@@ -149,7 +149,7 @@ CREATE TABLE Vehicle (
     VIN varchar(50) NOT NULL,
     make varchar(50) NOT NULL,
     model varchar(50) NOT NULL,
-    year varchar(50) NOT NULL,
+    vehicleYear varchar(50) NOT NULL,
     estimatedMileage varchar(50) NOT NULL,
     Customer_customerID varchar(50) NOT NULL,
     Package_PackageID varchar(50),

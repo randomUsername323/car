@@ -1,33 +1,33 @@
 insert into Person (PersonID, FirstName, LastName, Birthdate) values
   ('PSN000','John', 'Doe', '1975-12-30'),
-  ('PSN001','Carlos','Lomeli','1995-12-29'),
-  ('PSN002','John','Davis','1975-12-30'),
-  ('PSN003','Ray','Chin','1805-12-29'),
-  ('PSN004','Dave','Brown','2000-12-29'),
-  ('PSN005','Luke','Skywalker','2005-12-29'),
-  ('PSN006','Turk','Bryant','1995-7-29'),
-  ('PSN007','Lebron','James','2004-12-29'),
-  ('PSN008','Jimmy','Neutron','1987-12-29'),
-  ('PSN009','Tom','James','2004-12-30'),
-  ('PSN010','Tom','Nguyen','2016-12-29'),
-  ('PSN011','Jill','Nguyen','2000-8-29'),
-  ('PSN012','Karen','Lopez','1996-12-19'),
-  ('PSN013','Marisol','Garcia','2000-12-27'),
-  ('PSN014','Sarah','Waller','2016-12-29'),
-  ('PSN015','John','Dorian','1966-12-29'),
-  ('PSN016','Chris','Turk','1995-3-29'),
-  ('PSN017','Carla','James','2004-12-12'),
-  ('PSN018','Perry','Cox','1970-12-29'),
-  ('PSN019','Bob','Kelso','1940-12-30'),
-  ('PSN020','Elliot','Reid','1944-12-29'),
-  ('PSN021','Matt','Fox','1802-8-29'),
-  ('PSN022','Pete','Pikle','1966-12-19'),
-  ('PSN023','Lou','Williams','1970-12-27'),
-  ('PSN024','Patrick','Ly', '1990-11-19'),
-  ('PSN025','Pat','Chin', '1990-11-19'),
-  ('PSN026','Carl','Lewis', '1990-11-19'),
-  ('PSN027','John','Riddle', '1990-11-19'),
-  ('PSN028','Tom','Voldemort', '1990-11-19');
+  ('PSN001','Carlos','Lomeli', '1995-12-29'),
+  ('PSN002','John','Davis', '1975-12-30'),
+  ('PSN003','Ray','Chin', '1805-12-29'),
+  ('PSN004','Dave','Brown', '2000-12-29'),
+  ('PSN005','Luke','Skywalker', '2005-12-29'),
+  ('PSN006','Turk','Bryant', '1995-7-29'),
+  ('PSN007','Lebron','James', '2004-12-29'),
+  ('PSN008','Jimmy','Neutron', '1987-12-29'),
+  ('PSN009','Tom','James', '2004-12-30'),
+  ('PSN010','Tom','Nguyen', '2016-12-29'),
+  ('PSN011','Jill','Nguyen', '2000-8-29'),
+  ('PSN012','Karen','Lopez', '1996-12-19'),
+  ('PSN013','Marisol','Garcia', '2000-12-27'),
+  ('PSN014','Sarah','Waller', '2016-12-29'),
+  ('PSN015','John','Dorian', '1966-12-29'),
+  ('PSN016','Chris','Turk', '1995-3-29'),
+  ('PSN017','Carla','James', '2004-12-12'),
+  ('PSN018','Perry','Cox', '1970-12-29'),
+  ('PSN019','Bob','Kelso', '1940-12-30'),
+  ('PSN020','Elliot','Reid', '1944-12-29'),
+  ('PSN021','Matt','Fox', '1952-8-29'),
+  ('PSN022','Pete','Pikle', '1966-12-19'),
+  ('PSN023','Lou','Williams', '1970-12-27'),
+  ('PSN024','Patrick','Ly','1990-11-19'),
+  ('PSN025','Pat','Chin','1991-11-19'),
+  ('PSN026','Carl','Lewis','1992-11-19'),
+  ('PSN027','John','Riddle','1993-11-19'),
+  ('PSN028','Tom','Voldemort', '1940-11-19');
 
 insert into Employee(EmployeeID, Person_PersonID) values
   ('E000', 'PSN019'),
@@ -167,13 +167,13 @@ insert into Package(PackageID, PackageName) values
 
 insert into Vehicle
   (VIN, make, model, vehicleYear, estimatedMileage, Customer_customerID, Package_PackageID) values
-  ('V0000', 'Toyota', 'Prius', '2011', '50,000', 'C000', 'PKG000'),
-  ('V0001', 'Ford', 'Focus', '2009', '80,000', 'C001', 'PKG001'),
-  ('V0002', 'Nissan', 'Sentra', '1995', '76,000', 'C002', 'PKG001'),
-  ('V0003', 'Nissan', 'Rogue', '2009', '80,000', 'C003', 'PKG001'),
+  ('V0000', 'Toyota', 'Prius', '2011', '20,000', 'C000', 'PKG000'),
+  ('V0001', 'Ford', 'Focus', '2009', '40,000', 'C001', 'PKG008'),
+  ('V0002', 'Nissan', 'Sentra', '1999', '76,000', 'C002', 'PKG001'),
+  ('V0003', 'Nissan', 'Rogue', '2009', '80,000', 'C003', 'PKG009'),
   ('V0004', 'Honda', 'Civic', '2009', '77,111', 'C004', 'PKG005'),
   ('V0005', 'Chevy', 'Astro', '2009', '80,000', 'C005', 'PKG002'),
-  ('V0006', 'Chevy', 'Cruze', '2017', '78,040', 'C006', 'PKG001'),
+  ('V0006', 'Chevy', 'Cruze', '2017', '2,040', 'C006', 'PKG001'),
   ('V0007', 'Honda', 'Accord', '2009', '80,000', 'C007', 'PKG007'),
   ('V0008', 'Honda', 'Odyssey', '2009', '64,896', 'C008', 'PKG001'),
   ('V0009', 'Ford', 'F-150', '2000', '80,000', 'C009', 'PKG008'),
@@ -181,13 +181,13 @@ insert into Vehicle
   ('V0011', 'Ford', 'Mustang', '2007', '80,000', 'C011', 'PKG004'),
   ('V0012', 'Ford', 'Explorer', '2012', '80,000', 'C012', 'PKG005'),
   ('V0013', 'Chevy', 'Malibu', '2009', '40,000', 'C013', 'PKG006'),
-  ('V0014', 'Toyota', 'Corolla', '2014', '59,777', 'C014', 'PKG001');
+  ('V0014', 'Toyota', 'Corolla', '2014', '9,777', 'C014', 'PKG001');
 
 
 insert into ServiceAppointment
   (appDate, Customer_customerID, Vehicle_VIN, Technician_EmployeeID, appTime, currentMileage, CouponDiscountAmount) values
   ('2015-4-13', 'C000', 'V0000', 'E002', '04:30 PM', '39000', '2.25'),
-  ('2016-4-30', 'C000', 'V0000', 'E009', '05:30 PM', '50000', '2.25'),
+  ('2016-4-30', 'C000', 'V0000', 'E009', '05:30 PM', '51000', '2.25'),
   ('2015-4-11', 'C001', 'V0001', 'E002', '04:30 PM', '54000', '2.25'),
   ('2016-4-13', 'C001', 'V0001', 'E008', '04:30 PM', '76000', '2.25'),
   ('2017-4-13', 'C001', 'V0001', 'E002', '04:30 PM', '80000', '2.25'),
@@ -213,26 +213,30 @@ insert into ServiceAppointment
 insert into MaintenanceItem(maintID, cost, itemName, Package_PackageID,Skill_skillRequired) values
   ('MTN000', 20.50, 'A/C unit', 'PKG000', 'air conditioning'),
   ('MTN001', 30.00, 'Oil Change', 'PKG008', 'oil change'),
-  ('MTN002', 35.00, 'Car Wash', 'null', 'clean'),
+  ('MTN002', 35.00, 'Car Wash', null, 'clean'),
   ('MTN003', 30.00, 'Brakes', 'PKG009', 'brakes'),
   ('MTN004', 50.00, 'Engine', 'PKG001', 'engine'),
   ('MTN005', 30.00, 'Shocks', 'PKG004', 'suspension'),
   ('MTN006', 40.00, 'Lucas Additive', 'PKG006', 'front end'),
   ('MTN007', 30.00, 'Transimisson Fluid Drain', 'PKG007', 'transmission'),
-  ('MTN008', 35.00, 'Brake Fluid Change', 'null', 'oil change'),
-  ('MTN009', 15.00, 'Tire Rotation', 'null', 'front end'),
+  ('MTN008', 35.00, 'Brake Fluid Change', null, 'oil change'),
+  ('MTN009', 15.00, 'Tire Rotation', null, 'front end'),
   ('MTN010', 25.00, 'Axle Service', 'PKG004', 'suspension'),
   ('MTN011', 60.00, 'Tire Change', 'PKG002', 'suspension'),
   ('MTN012', 55.00, 'Check Up', 'PKG003', 'engine'),
   ('MTN013', 130.00, 'Power Train', 'PKG005', 'transmission'),
-  ('MTN0014', 130.00, 'Drive Train', 'PKG005', 'transmisson'),
-  ('MTN0015', 30.00, 'Rebuild Engine', 'PKG001', 'emgine');
+  ('MTN014', 130.00, 'Drive Train', 'PKG005', 'transmisson'),
+  ('MTN015', 30.00, 'Rebuild Engine', null, 'engine'),
+  ('MTN016', 80.00, 'Engine Ring Replacment', 'PKG001', 'ring replacement');
 
 insert into MaintenanceVisitOrder
   (Mechanic_Employee_EmployeeID,MaintenanceItem_maintID, ServiceAppointment_Customer_customerID,
   ServiceAppointment_appDate, ServiceAppointment_Vehicle_VIN, TotalCostOfService, MileageForNextService) values
-  ('E000', 'MTN000', 'C000', '2015-4-13', 'V0000', 20.50, '100,000'),
-  ('E001', 'MTN001', 'C000', '2015-4-13', 'V0000', 30.00, '101,000');
+  ('E000', 'MTN000', 'C000', '2015-4-13', 'V0000', 20.50, '50,000'),
+  ('E001', 'MTN000', 'C000', '2016-4-30', 'V0000', 20.50, '70,000'),
+  ('E002', 'MTN001', 'C001', '2015-4-13', 'V0001', 30.00, '50,000'), -- E002 doesn't have oil change skill, query 7
+
+  ;
 
 insert into Premier (calculatedAnnualFee, Customer_customerID) values
   ('4000.00', 'C001');

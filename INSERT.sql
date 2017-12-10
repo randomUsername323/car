@@ -44,7 +44,7 @@ insert into Employee(EmployeeID, Person_PersonID) values
   ('E011', 'PSN016');
 
 insert into Mechanic(Employee_EmployeeID, hourlyRate) values
-  ('E000', '16.25'),
+  ('E000', '36.25'),
   ('E001', '12.89'),
   ('E002', '17.40'),
   ('E003', '13.22'),
@@ -81,6 +81,7 @@ insert into Technician (Employee_EmployeeID, specialty, salary) values
 insert into Skill(skillName) values
   ('air conditioning'),
   ('brakes'),
+  ('clean'),
   ('engine'),
   ('front end'),
   ('head machining'),
@@ -107,33 +108,50 @@ insert into Mentoring(Skill_skillName, MentorID, MenteeID, startDate, endDate) v
 insert into Certification (dateEarned, Skill_skillName, Mechanic_Employee_EmployeeID) values
   ('2014-03-19', 'air conditioning', 'E000'),
   ('2014-06-19', 'brakes', 'E000'),
+  ('2010-01-15', 'clean', 'E000'),
   ('2014-04-19', 'engine', 'E000'),
+  ('2014-04-19', 'front end', 'E000'),
+  ('2013-04-19', 'head machining', 'E000'),
+  ('2013-04-25', 'hoist operation', 'E000'),
+  ('2013-05-19', 'ring replacement', 'E000'),
+  ('2013-06-19', 'smog', 'E000'),
+  ('2013-07-19', 'transmission', 'E000'),
   ('2016-05-11', 'air conditioning', 'E001'),
   ('2016-05-11', 'brakes', 'E001'),
+  ('2010-01-15', 'clean', 'E001'),
   ('2016-05-11', 'engine', 'E001'),
   ('2016-05-11', 'air conditioning', 'E002'),
   ('2016-05-11', 'brakes', 'E002'),
-  ('2016-05-11', 'transmission', 'E003'),
+  ('2010-01-15', 'clean', 'E002'),
   ('2016-05-11', 'air conditioning', 'E003'),
+  ('2010-01-15', 'clean', 'E003'),
+  ('2016-05-11', 'transmission', 'E003'),
+  ('2010-01-15', 'clean', 'E004'),
   ('2016-05-11', 'smog', 'E004'),
   ('2016-05-11', 'air conditioning', 'E005'),
+  ('2010-01-15', 'clean', 'E005'),
   ('2016-05-11', 'smog', 'E005'),
-  ('2016-05-11', 'front end', 'E006'),
   ('2016-05-10', 'air conditioning', 'E006'),
+  ('2010-01-15', 'clean', 'E006'),
+  ('2016-05-11', 'front end', 'E006'),
   ('2016-05-11', 'oil change', 'E006'),
   ('2016-10-11', 'suspension', 'E006'),
-  ('2016-05-11', 'front end', 'E007'),
   ('2016-05-10', 'air conditioning', 'E007'),
+  ('2010-01-15', 'clean', 'E007'),
+  ('2016-05-11', 'front end', 'E007'),
   ('2016-04-11', 'oil change', 'E007'),
   ('2016-09-11', 'suspension', 'E007'),
   ('2016-05-10', 'air conditioning', 'E008'),
+  ('2010-01-15', 'clean', 'E008'),
   ('2016-04-11', 'oil change', 'E008'),
   ('2016-08-11', 'suspension', 'E008'),
   ('2015-04-11', 'brakes', 'E009'),
+  ('2010-01-15', 'clean', 'E009'),
   ('2016-07-11', 'suspension', 'E009'),
-  ('2016-04-11', 'suspension', 'E010'),
+  ('2010-01-15', 'clean', 'E010'),
   ('2016-04-11', 'engine', 'E010'),
-  ('2016-04-11', 'oil change', 'E010');
+  ('2016-04-11', 'oil change', 'E010'),
+  ('2016-04-11', 'suspension', 'E010');
 
 insert into Package(PackageID, PackageName) values
   ('PKG000', 'Air Systems'),
@@ -195,7 +213,7 @@ insert into ServiceAppointment
 insert into MaintenanceItem(maintID, cost, itemName, Package_PackageID,Skill_skillRequired) values
   ('MTN000', 20.50, 'A/C unit', 'PKG000', 'air conditioning'),
   ('MTN001', 30.00, 'Oil Change', 'PKG008', 'oil change'),
-  ('MTN002', 35.00, 'Car Wash', 'null', 'oil change'),
+  ('MTN002', 35.00, 'Car Wash', 'null', 'clean'),
   ('MTN003', 30.00, 'Brakes', 'PKG009', 'brakes'),
   ('MTN004', 50.00, 'Engine', 'PKG001', 'engine'),
   ('MTN005', 30.00, 'Shocks', 'PKG004', 'suspension'),
@@ -243,5 +261,3 @@ insert into Outreach (Date, Type, Prospective_prospectiveID) values
 
 insert into Steady (Customer_customerID, loyaltyPoints, email) values
   ('C000', 340, 'johndoe@gmail.com');
-
-

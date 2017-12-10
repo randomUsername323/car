@@ -46,6 +46,7 @@ insert into Employee(EmployeeID, Person_PersonID) values
 insert into Mechanic(Employee_EmployeeID, hourlyRate) values
   ('E000', '16.25'),
   ('E001', '12.89'),
+  ('E002', '17.40'),
   ('E003', '13.22'),
   ('E004', '21.57'),
   ('E005', '11.63'),

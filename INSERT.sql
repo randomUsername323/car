@@ -45,6 +45,7 @@ insert into Employee(EmployeeID, Person_PersonID) values
 insert into Mechanic(Employee_EmployeeID, hourlyRate) values
   ('E000', '16.25'),
   ('E001', '12.89'),
+  ('E002', '17.40'),
   ('E003', '13.22'),
   ('E004', '21.57'),
   ('E005', '11.63'),
@@ -68,6 +69,7 @@ insert into Mentoring(Skill_skillName, MentorID, MenteeID, startDate, endDate) v
 
 insert into Certification (dateEarned, Skill_skillName, Mechanic_Employee_EmployeeID) values
   ('2014-03-19', 'air conditioning', 'E000'),
+  ('2014-04-20', 'smog', 'E000'),
   ('2016-05-11', 'air conditioning', 'E001');
 
 insert into Customer
@@ -100,7 +102,7 @@ insert into Package(PackageID, PackageName) values
   ('PKG004', 'Suspension');
 
 insert into Vehicle
-  (VIN, make, model, year, estimatedMileage, Customer_customerID, Package_PackageID) values
+  (VIN, make, model, vehicleYear, estimatedMileage, Customer_customerID, Package_PackageID) values
   ('V0000', 'Toyota', 'Prius', '2011', '50,000', 'C000', 'PKG000'),
   ('V0001', 'Ford', 'Focus', '2009', '80,000', 'C001', 'PKG001');
 
@@ -137,7 +139,8 @@ insert into Individual(homeAddress, Customer_customerID) values
 
 insert into MonthlyPayment (Premier_Customer_customerID,paymentDate, paymentAmount) values
   ('C001', '2012-3-23', '50'),
-  ('C001', '2012-4-23', '50');
+  ('C001', '2012-4-23', '50'),
+  ('C001', '2012-5-23', '50');
 
 insert into Outreach (Date, Type, Prospective_prospectiveID) values
   ('2017-11-1', 'Prospective', 'PRSP000'),

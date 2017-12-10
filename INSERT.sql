@@ -28,7 +28,19 @@ insert into Person (PersonID, FirstName, LastName, Birthdate) values
 insert into Employee(EmployeeID, Person_PersonID) values
   ('E000', 'PSN019'),
   ('E001', 'PSN018'),
-  ('E002', 'PSN017');
+  ('E002', 'PSN017'),
+  ('E003', 'PSN008'),
+  ('E004', 'PSN009'),
+  ('E005', 'PSN010'),
+  ('E006', 'PSN011'),
+  ('E007', 'PSN012'),
+  ('E008', 'PSN013'),
+  ('E009', 'PSN014'),
+  ('E010', 'PSN015'),
+  ('E011', 'PSN016');
+ 
+
+
 
 insert into Mechanic(Employee_EmployeeID, hourlyRate) values
   ('E000', '16.25'),
@@ -60,7 +72,11 @@ insert into Customer
   ('C004', '928-734-5345', 2005, 'PSN004'),
   ('C005', '326-536-4345', 2006, 'PSN005'),
   ('C006', '252-111-2335', 2003, 'PSN006'),
-  ('C007', '156-234-2344', 2007, 'PSN007');
+  ('C007', '156-234-2344', 2007, 'PSN007'),
+  ('C008', '156-234-2344', 2007, 'PSN020'),
+  ('C009', '156-234-2344', 2008, 'PSN021'),
+  ('C010', '156-234-2344', 2010, 'PSN024');
+
 
 insert into Technician (Employee_EmployeeID, specialty, salary) values
   ('E002', 'wheels', '50000');
@@ -116,3 +132,4 @@ insert into Outreach (Date, Type, Prospective_prospectiveID) values
 
 insert into Steady (Customer_customerID, loyaltyPoints, email) values
   ('C000', 340, 'johndoe@gmail.com');
+

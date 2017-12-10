@@ -73,17 +73,20 @@ insert into Customer
 
 insert into Technician (Employee_EmployeeID, specialty, salary) values
   ('E002', 'wheels', '50000'),
-  ('E008', 'engines ', '89,000'),
-  ('E009', 'hvac ', '66,420 '),
-  ('E010', 'windows ', '44,410 '),
-  ('E011', 'electronics ', '99,900 ');
+  ('E008', 'engines', '89,000'),
+  ('E009', 'hvac', '66,420'),
+  ('E010', 'windows', '44,410'),
+  ('E011', 'electronics', '99,900');
 
 insert into Skill(skillName) values
   ('air conditioning'),
   ('brakes'),
   ('engine'),
   ('front end'),
+  ('head machining'),
+  ('hoist operation'),
   ('oil change'),
+  ('ring replacement'),
   ('smog'),
   ('suspension'),
   ('transmission');
@@ -94,7 +97,12 @@ insert into Mentoring(Skill_skillName, MentorID, MenteeID, startDate, endDate) v
   ('air conditioning', 'E007', 'E008', '2015-07-29', '2016-04-11'),
   ('brakes', 'E000', 'E002', '2015-07-29', '2016-04-11'),
   ('engine', 'E000', 'E010', '2015-07-29', '2016-04-11'),
-  ('air conditioning', 'E000', 'E003', '2015-07-29', '2016-04-11');
+  ('air conditioning', 'E000', 'E003', '2015-07-29', '2016-04-11'),
+  ('suspension', 'E010', 'E009', '2015-08-29', '2016-07-11'),
+  ('suspension', 'E010', 'E008', '2015-08-29', '2016-08-11'),
+  ('suspension', 'E010', 'E007', '2015-08-29', '2016-09-11'),
+  ('suspension', 'E010', 'E006', '2015-08-29', '2016-10-11');
+
 
 insert into Certification (dateEarned, Skill_skillName, Mechanic_Employee_EmployeeID) values
   ('2014-03-19', 'air conditioning', 'E000'),
@@ -104,18 +112,27 @@ insert into Certification (dateEarned, Skill_skillName, Mechanic_Employee_Employ
   ('2016-05-11', 'brakes', 'E001'),
   ('2016-05-11', 'engine', 'E001'),
   ('2016-05-11', 'air conditioning', 'E002'),
+  ('2016-05-11', 'brakes', 'E002'),
   ('2016-05-11', 'transmission', 'E003'),
+  ('2016-05-11', 'air conditioning', 'E003'),
   ('2016-05-11', 'smog', 'E004'),
   ('2016-05-11', 'air conditioning', 'E005'),
+  ('2016-05-11', 'smog', 'E005'),
   ('2016-05-11', 'front end', 'E006'),
   ('2016-05-10', 'air conditioning', 'E006'),
   ('2016-05-11', 'oil change', 'E006'),
+  ('2016-10-11', 'suspension', 'E006'),
   ('2016-05-11', 'front end', 'E007'),
   ('2016-05-10', 'air conditioning', 'E007'),
   ('2016-04-11', 'oil change', 'E007'),
+  ('2016-09-11', 'suspension', 'E007'),
+  ('2016-05-10', 'air conditioning', 'E008'),
   ('2016-04-11', 'oil change', 'E008'),
+  ('2016-08-11', 'suspension', 'E008'),
   ('2015-04-11', 'brakes', 'E009'),
+  ('2016-07-11', 'suspension', 'E009'),
   ('2016-04-11', 'suspension', 'E010'),
+  ('2016-04-11', 'engine', 'E010'),
   ('2016-04-11', 'oil change', 'E010');
 
 insert into Package(PackageID, PackageName) values
@@ -150,7 +167,7 @@ insert into Vehicle
 
 
 insert into ServiceAppointment
-  (appDate, Customer_customerID, Vehicle_VIN, Technician_EmployeeID, appTime, currentMileage, CouponDiscountAmount ) values
+  (appDate, Customer_customerID, Vehicle_VIN, Technician_EmployeeID, appTime, currentMileage, CouponDiscountAmount) values
   ('2015-4-13', 'C000', 'V0000', 'E002', '04:30 PM', '39000', '2.25'),
   ('2016-4-30', 'C000', 'V0000', 'E009', '05:30 PM', '50000', '2.25'),
   ('2015-4-11', 'C001', 'V0001', 'E002', '04:30 PM', '54000', '2.25'),
@@ -209,8 +226,8 @@ insert into Prospective
 
 insert into Corporation
   (Customer_customerID, mailing, billing, vehiclePickup, vehicleDelivery) values
-  ('C006','999 Park St Wiilow,CA 90734','897 Bumpy Road Bell,Ca 67899','677 Loopy St Compton,CA 90766','456 ADC lane Rift,CA 90756'),
-  ('C007','444 Park St Wiilow,CA 90734','345 Bumpy Road Bell,Ca 67899','666 Loopy St Compton,CA 90766','789 ADC lane Rift,CA 90756');
+  ('C006','999 Park St Willow,CA 90734','897 Bumpy Road Bell,CA 67899','677 Loopy St Compton,CA 90766','456 ADC lane Rift,CA 90756'),
+  ('C007','444 Park St Willow,CA 90734','345 Bumpy Road Bell,CA 67899','666 Loopy St Compton,CA 90766','789 ADC lane Rift,CA 90756');
 
 insert into Individual(homeAddress, Customer_customerID) values
   ('345 Acer Rd Lakewood, CA 90445', 'C005'),

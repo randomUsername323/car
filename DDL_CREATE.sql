@@ -38,9 +38,9 @@ CREATE TABLE Individual (
 
 CREATE TABLE MaintenanceItem (
     maintID varchar(50) NOT NULL,
-    cost varchar(50) NOT NULL,
+    cost double NOT NULL,
     itemName varchar(50) NOT NULL,
-    Package_PackageID varchar(50) NOT NULL,
+    Package_PackageID varchar(50),
     Skill_skillRequired varchar(50) NOT NULL,
     CONSTRAINT MaintenanceItem_pk PRIMARY KEY (maintID)
 );
@@ -51,7 +51,7 @@ CREATE TABLE MaintenanceVisitOrder (
     ServiceAppointment_Customer_customerID varchar(50) NOT NULL,
     ServiceAppointment_appDate date NOT NULL,
     ServiceAppointment_Vehicle_VIN varchar(50) NOT NULL,
-    TotalCostOfService varchar(50) NOT NULL,
+    TotalCostOfService double NOT NULL,
     MileageForNextService varchar(50) NOT NULL,
     CONSTRAINT MaintenanceVisitOrder_pk PRIMARY KEY (MaintenanceItem_maintID,ServiceAppointment_Customer_customerID,ServiceAppointment_appDate,ServiceAppointment_Vehicle_VIN)
 );
@@ -239,3 +239,4 @@ ALTER TABLE Vehicle ADD CONSTRAINT Vehicle_Package FOREIGN KEY Vehicle_Package (
 
 
 ----
+

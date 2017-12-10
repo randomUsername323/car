@@ -44,7 +44,14 @@ insert into Employee(EmployeeID, Person_PersonID) values
 
 insert into Mechanic(Employee_EmployeeID, hourlyRate) values
   ('E000', '16.25'),
-  ('E001', '12.89');
+  ('E001', '12.89'),
+  ('E003', '13.22'),
+  ('E004', '21.57'),
+  ('E005', '11.63'),
+  ('E006', '10.25'),
+  ('E007', '15.22');
+
+
 
 insert into Skill(skillName) values
   ('air conditioning'),
@@ -79,7 +86,11 @@ insert into Customer
 
 
 insert into Technician (Employee_EmployeeID, specialty, salary) values
-  ('E002', 'wheels', '50000');
+  ('E002', 'wheels', '50000'),
+  ('E008', 'engines ', '89,000'),
+  ('E009', 'hvac ', '66,420 '),
+  ('E010', 'windows ', '44,410 '),
+  ('E011', 'electronics ', '99,900 ');
 
 insert into Package(PackageID, PackageName) values
   ('PKG000', 'Air Systems'),
@@ -98,12 +109,14 @@ insert into ServiceAppointment
   ('2015-4-13', 'C000', 'V0000', 'E002', '04:30 PM', '39000', '2.25');
 
 insert into MaintenanceItem(maintID, cost, itemName, Package_PackageID,Skill_skillRequired) values
-  ('MTN000', '20.50', 'A/C unit', 'PKG000', 'air conditioning');
+  ('MTN000', 20.50, 'A/C unit', 'PKG000', 'air conditioning'),
+  ('MTN001', 30.00, 'Oil Change', 'PKG000', 'oil change');
 
 insert into MaintenanceVisitOrder
   (Mechanic_Employee_EmployeeID,MaintenanceItem_maintID, ServiceAppointment_Customer_customerID,
   ServiceAppointment_appDate, ServiceAppointment_Vehicle_VIN, TotalCostOfService, MileageForNextService) values
-  ('E000', 'MTN000', 'C000', '2015-4-13', 'V0000', '20.50', '100,000');
+  ('E000', 'MTN000', 'C000', '2015-4-13', 'V0000', 20.50, '100,000'),
+  ('E001', 'MTN001', 'C000', '2015-4-13', 'V0000', 30.00, '101,000');
 
 insert into Premier (calculatedAnnualFee, Customer_customerID) values
   ('4000.00', 'C001');

@@ -251,6 +251,11 @@ insert into MaintenanceItem(maintID, cost, itemName, Package_PackageID,Skill_ski
   ('MTN018', 30.00, 'Oil Drain', 'PKG008', 'oil change'),
   ('MTN019', 15.00, 'Car Wax', null, 'clean'),
   ('MTN020', 30.00, 'Brake pad change', 'PKG009', 'brakes'),
+  ('MTN021', 50.00, 'Engine Clean', 'PKG001', 'engine'),
+  ('MTN022', 30.00, 'Struts', 'PKG004', 'suspension'),
+  ('MTN023', 40.00, ‘HeadLight Clean', 'PKG006', 'front end'),
+  ('MTN024', 30.00, 'Brake Fluid Drain', 'PKG009', 'transmission'),
+  ('MTN025', 35.00, 'Drum Replacement', ‘PKG009’, 'brakes’);
 
 insert into MaintenanceVisitOrder
   (Mechanic_Employee_EmployeeID,MaintenanceItem_maintID, ServiceAppointment_Customer_customerID,

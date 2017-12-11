@@ -157,7 +157,7 @@ insert into Certification (dateEarned, Skill_skillName, Mechanic_Employee_Employ
   ('2016-04-11', 'oil change', 'E010'),
   ('2016-04-11', 'suspension', 'E010');
 
-insert into Package(PackageID, PackageName, Interval) values
+insert into Package(PackageID, PackageName) values
   ('BASIC', 'Basic'),
   ('BRONZE', 'Bronze'),
   ('SILVER', 'Silver'),

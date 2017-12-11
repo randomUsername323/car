@@ -88,6 +88,7 @@ CREATE TABLE Outreach (
 CREATE TABLE Package (
     PackageID varchar(50) NOT NULL,
     PackageName varchar(50) NOT NULL,
+    Interval varchar(50) NOT NULL,
     CONSTRAINT Package_pk PRIMARY KEY (PackageID)
 );
 

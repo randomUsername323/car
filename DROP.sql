@@ -67,7 +67,13 @@ ALTER TABLE ServiceAppointment
 
 ALTER TABLE ServiceAppointment
     DROP FOREIGN KEY ServiceAppointment_Vehicle;
+    
+ALTER TABLE ServiceInterval 
+    DROP FOREIGN KEY ServiceInterval_Package;
 
+ALTER TABLE ServiceInterval 
+    DROP FOREIGN KEY ServiceInterval_Vehicle;
+    
 ALTER TABLE Steady
     DROP FOREIGN KEY Steady_Customer;
 

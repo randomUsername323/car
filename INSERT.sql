@@ -83,6 +83,7 @@ insert into Skill(skillName) values
   ('brakes'),
   ('clean'),
   ('engine'),
+  ('fuel system'),
   ('front end'),
   ('head machining'),
   ('hoist operation'),
@@ -90,6 +91,7 @@ insert into Skill(skillName) values
   ('ring replacement'),
   ('smog'),
   ('suspension'),
+  ('tire'),
   ('transmission');
 
 insert into Mentoring(Skill_skillName, MentorID, MenteeID, startDate, endDate) values
@@ -110,11 +112,13 @@ insert into Certification (dateEarned, Skill_skillName, Mechanic_Employee_Employ
   ('2014-06-19', 'brakes', 'E000'),
   ('2010-01-15', 'clean', 'E000'),
   ('2014-04-19', 'engine', 'E000'),
+  ('2014-04-19' ,'fuel system', 'E000'),
   ('2014-04-19', 'front end', 'E000'),
   ('2013-04-19', 'head machining', 'E000'),
   ('2013-04-25', 'hoist operation', 'E000'),
   ('2013-05-19', 'ring replacement', 'E000'),
   ('2013-06-19', 'smog', 'E000'),
+  ('2012-12-21', 'tire', 'E000'),
   ('2013-07-19', 'transmission', 'E000'),
   ('2016-05-11', 'air conditioning', 'E001'),
   ('2016-05-11', 'brakes', 'E001'),
@@ -153,7 +157,11 @@ insert into Certification (dateEarned, Skill_skillName, Mechanic_Employee_Employ
   ('2016-04-11', 'oil change', 'E010'),
   ('2016-04-11', 'suspension', 'E010');
 
-insert into Package(PackageID, PackageName) values
+insert into Package(PackageID, PackageName, Interval) values
+  ('BASIC', 'Basic'),
+  ('BRONZE', 'Bronze'),
+  ('SILVER', 'Silver'),
+  ('GOLD', 'Gold'),
   ('PKG000', 'Air Systems'),
   ('PKG001', 'Engine'),
   ('PKG002', 'Lower External'),
@@ -173,7 +181,7 @@ insert into Vehicle
   ('V0003', 'Nissan', 'Rogue', '2009', '80,000', 'C003', 'PKG009'),
   ('V0004', 'Honda', 'Civic', '2009', '77,111', 'C004', 'PKG005'),
   ('V0005', 'Chevy', 'Astro', '2009', '80,000', 'C005', 'PKG002'),
-  ('V0006', 'Chevy', 'Cruze', '2017', '2,040', 'C006', 'PKG001'),
+  ('V0006', 'Chevy', 'Cruze', '2017', '2,040', 'C006', 'BASIC'),
   ('V0007', 'Honda', 'Accord', '2009', '80,000', 'C007', 'PKG007'),
   ('V0008', 'Honda', 'Odyssey', '2009', '64,896', 'C008', 'PKG001'),
   ('V0009', 'Ford', 'F-150', '2000', '80,000', 'C009', 'PKG008'),
@@ -181,7 +189,7 @@ insert into Vehicle
   ('V0011', 'Ford', 'Mustang', '2007', '80,000', 'C011', 'PKG004'),
   ('V0012', 'Ford', 'Explorer', '2012', '80,000', 'C012', 'PKG005'),
   ('V0013', 'Chevy', 'Malibu', '2009', '40,000', 'C013', 'PKG006'),
-  ('V0014', 'Toyota', 'Corolla', '2014', '9,777', 'C014', 'PKG001');
+  ('V0014', 'Toyota', 'Corolla', '2014', '9,777', 'C014', null);
 
 
 insert into ServiceAppointment
@@ -211,14 +219,25 @@ insert into ServiceAppointment
 
 
 insert into MaintenanceItem(maintID, cost, itemName, Package_PackageID,Skill_skillRequired) values
+   ('MTNBSC000', 30.00, 'Oil Change', 'BASIC', 'oil change'),
+   ('MTNBSC001', 40.00, 'Tire rotation', 'BASIC', tire'),
+   ('MTNBRZ000', 35.00, 'Fuel System', 'BRONZE', 'fuel system'),
+   ('MTNBRZ001', 40.00, 'Lucas Additive', 'BRONZE', 'front end'),
+   ('MTNSIL000', 45.00, 'Axle Service', 'SILVER', 'suspension'),
+   ('MTNSIL001', 30.00, 'Shocks', 'SILVER', 'suspension'),
+   ('MTNGLD000', 60.00, 'Tire Change', 'GOLD', 'suspension'),
+   ('MTNGLD001', 30.00, 'A/C unit', 'GOLD', 'air conditioning'),
+   ('MTNGLD002', 80.00, 'Engine Ring Replacement', 'GOLD', 'ring replacement'),
+   ('MTNGLD003', 15.00, 'Car Wash', 'GOLD', 'clean'),
+   ('MTNGLD004', 30.00, 'Brakes', 'GOLD', 'brakes'),
   ('MTN000', 20.50, 'A/C unit', 'PKG000', 'air conditioning'),
   ('MTN001', 30.00, 'Oil Change', 'PKG008', 'oil change'),
-  ('MTN002', 35.00, 'Car Wash', null, 'clean'),
+  ('MTN002', 15.00, 'Car Wash', null, 'clean'),
   ('MTN003', 30.00, 'Brakes', 'PKG009', 'brakes'),
   ('MTN004', 50.00, 'Engine', 'PKG001', 'engine'),
   ('MTN005', 30.00, 'Shocks', 'PKG004', 'suspension'),
   ('MTN006', 40.00, 'Lucas Additive', 'PKG006', 'front end'),
-  ('MTN007', 30.00, 'Transimisson Fluid Drain', 'PKG007', 'transmission'),
+  ('MTN007', 30.00, 'Transmission Fluid Drain', 'PKG007', 'transmission'),
   ('MTN008', 35.00, 'Brake Fluid Change', null, 'oil change'),
   ('MTN009', 15.00, 'Tire Rotation', null, 'front end'),
   ('MTN010', 25.00, 'Axle Service', 'PKG004', 'suspension'),
@@ -227,19 +246,40 @@ insert into MaintenanceItem(maintID, cost, itemName, Package_PackageID,Skill_ski
   ('MTN013', 130.00, 'Power Train', 'PKG005', 'transmission'),
   ('MTN014', 130.00, 'Drive Train', 'PKG005', 'transmisson'),
   ('MTN015', 30.00, 'Rebuild Engine', null, 'engine'),
-  ('MTN016', 80.00, 'Engine Ring Replacment', 'PKG001', 'ring replacement');
+  ('MTN016', 80.00, 'Engine Ring Replacement', 'PKG001', 'ring replacement');
 
 insert into MaintenanceVisitOrder
   (Mechanic_Employee_EmployeeID,MaintenanceItem_maintID, ServiceAppointment_Customer_customerID,
   ServiceAppointment_appDate, ServiceAppointment_Vehicle_VIN, TotalCostOfService, MileageForNextService) values
-  ('E000', 'MTN000', 'C000', '2015-4-13', 'V0000', 20.50, '50,000'),
-  ('E001', 'MTN000', 'C000', '2016-4-30', 'V0000', 20.50, '70,000'),
-  ('E002', 'MTN001', 'C001', '2015-4-13', 'V0001', 30.00, '50,000'), -- E002 doesn't have oil change skill, query 7
-
-  ;
+  ('E000', 'MTN000', 'C000', '2015-04-13', 'V0000', 20.50, '50000'),
+  ('E001', 'MTN001', 'C000', '2016-04-30', 'V0000', 30.00, '65000'),
+  ('E006', 'MTN001', 'C001', '2016-04-11', 'V0001', 30.00, '70000'),
+  ('E001', 'MTN002', 'C001', '2016-04-13', 'V0001', 35.00, '85000'),
+  ('E001', 'MTN001', 'C001', '2017-04-13', 'V0001', 30.00, '95000'),
+  ('E001', 'MTN001', 'C002', '2016-04-13', 'V0002', 30.00, '95000'),
+  ('E001', 'MTN001', 'C003', '2017-04-13', 'V0003', 30.00, '95000'),
+  ('E001', 'MTN001', 'C004', '2016-12-13', 'V0004', 30.00, '85000'),
+  ('E001', 'MTN001', 'C004', '2017-04-13', 'V0004', 30.00, '85000'),
+  ('E001', 'MTN001', 'C005', '2015-04-13', 'V0005', 30.00, '95000'),
+  ('E001', 'MTN001', 'C006', '2016-04-13', 'V0006', 30.00, '85000'),
+  ('E001', 'MTN001', 'C007', '2015-04-13', 'V0007', 30.00, '95000'),
+  ('E001', 'MTN001', 'C008', '2017-04-13', 'V0008', 30.00, '70000'),
+  ('E001', 'MTN001', 'C009', '2015-04-13', 'V0009', 30.00, '95000'),
+  ('E001', 'MTN001', 'C010', '2015-04-13', 'V0010', 30.00, '85000'),
+  ('E001', 'MTN001', 'C010', '2016-08-13', 'V0010', 30.00, '85000'),
+  ('E001', 'MTN001', 'C010', '2016-08-13', 'V0010', 30.00, '85000'),
+  ('E001', 'MTN001', 'C011', '2017-04-13', 'V0011', 30.00, '95000'),
+  ('E001', 'MTN001', 'C012', '2016-04-13', 'V0012', 30.00, '95000'),
+  ('E001', 'MTN001', 'C013', '2016-4-13', 'V0013', 30.00, '50000'),
+  ('E001', 'MTN001', 'C013', '2017-4-13', 'V0013', 30.00, '55000'),
+  ('E001', 'MTN001', 'C014', '2015-4-13', 'V0014', 30.00, '95000'),
 
 insert into Premier (calculatedAnnualFee, Customer_customerID) values
-  ('4000.00', 'C001');
+  ('2500.00', 'C011');
+  ('2500.00', 'C012');
+  ('2500.00', 'C013');
+  ('2500.00', 'C014');
+
 
 insert into Prospective
   (prospectiveID,ProsCellPhoneNumber, ProsEmail, isDeadProspect, Customer_customerID, Person_PersonID) values
@@ -256,8 +296,8 @@ insert into Individual(homeAddress, Customer_customerID) values
   ('778 Bellflower Ave Long Beach, CA 90444', 'C004');
 
 insert into MonthlyPayment (Premier_Customer_customerID,paymentDate, paymentAmount) values
-  ('C001', '2012-3-23', '50'),
-  ('C001', '2012-4-23', '50');
+  ('C011', '2012-3-23', '50'),
+  ('C011', '2012-4-23', '50');
 
 insert into Outreach (Date, Type, Prospective_prospectiveID) values
   ('2017-11-1', 'Prospective', 'PRSP000'),
@@ -265,3 +305,15 @@ insert into Outreach (Date, Type, Prospective_prospectiveID) values
 
 insert into Steady (Customer_customerID, loyaltyPoints, email) values
   ('C000', 340, 'johndoe@gmail.com');
+  ('C001', 400, 'carloslomeili@gmail.com');
+  ('C002', 500, 'johndavis@gmail.com');
+  ('C003', 210, 'raychin@gmail.com');
+  ('C004', 640, 'davebrown@gmail.com');
+  ('C005', 390, 'lukeskywalker@gmail.com');
+  ('C006', 340, 'turkbryant@gmail.com');
+  ('C007', 340, 'lebronjames@gmail.com');
+  ('C008', 140, 'elliotreid@gmail.com');
+  ('C009', 20, 'mattfox@gmail.com');
+  ('C010', 80, 'patrickly@gmail.com');
+
+

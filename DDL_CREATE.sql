@@ -127,6 +127,15 @@ CREATE TABLE ServiceAppointment (
     CONSTRAINT ServiceAppointment_pk PRIMARY KEY (appDate,Customer_customerID,Vehicle_VIN)
 );
 
+CREATE TABLE ServiceInterval (
+    S_INTERVAL_ID int NOT NULL,
+    intervalMile varchar(50) NOT NULL,
+    Vehicle_VIN varchar(50) NOT NULL,
+    Package_PackageID varchar(50) NOT NULL,
+    CONSTRAINT ServiceInterval_pk PRIMARY KEY (S_INTERVAL_ID,Vehicle_VIN)
+);
+
+
 CREATE TABLE Skill (
     skillName varchar(50) NOT NULL,
     CONSTRAINT Skill_pk PRIMARY KEY (skillName)
@@ -224,6 +233,12 @@ ALTER TABLE ServiceAppointment ADD CONSTRAINT ServiceAppointment_Technician FORE
     REFERENCES Technician (Employee_EmployeeID);
 
 ALTER TABLE ServiceAppointment ADD CONSTRAINT ServiceAppointment_Vehicle FOREIGN KEY ServiceAppointment_Vehicle (Vehicle_VIN)
+    REFERENCES Vehicle (VIN);
+
+ALTER TABLE ServiceInterval ADD CONSTRAINT ServiceInterval_Package FOREIGN KEY ServiceInterval_Package (Package_PackageID)
+    REFERENCES Package (PackageID);
+
+ALTER TABLE ServiceInterval ADD CONSTRAINT ServiceInterval_Vehicle FOREIGN KEY ServiceInterval_Vehicle (Vehicle_VIN)
     REFERENCES Vehicle (VIN);
 
 ALTER TABLE Steady ADD CONSTRAINT Steady_Customer FOREIGN KEY Steady_Customer (Customer_customerID)

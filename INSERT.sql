@@ -246,18 +246,31 @@ insert into MaintenanceItem(maintID, cost, itemName, Package_PackageID,Skill_ski
   ('MTN013', 130.00, 'Power Train', 'PKG005', 'transmission'),
   ('MTN014', 130.00, 'Drive Train', 'PKG005', 'transmisson'),
   ('MTN015', 30.00, 'Rebuild Engine', null, 'engine'),
-  ('MTN016', 80.00, 'Engine Ring Replacement', 'PKG001', 'ring replacement');
+  ('MTN016', 80.00, 'Engine Ring Replacement', 'PKG001', 'ring replacement'),
+  ('MTN017', 20.50, 'A/C recharge', 'PKG000', 'air conditioning'),
+  ('MTN018', 30.00, 'Oil Drain', 'PKG008', 'oil change'),
+  ('MTN019', 15.00, 'Car Wax', null, 'clean'),
+  ('MTN020', 30.00, 'Brake pad change', 'PKG009', 'brakes'),
 
 insert into MaintenanceVisitOrder
   (Mechanic_Employee_EmployeeID,MaintenanceItem_maintID, ServiceAppointment_Customer_customerID,
   ServiceAppointment_appDate, ServiceAppointment_Vehicle_VIN, TotalCostOfService, MileageForNextService) values
-  ('E000', 'MTN000', 'C000', '2015-04-13', 'V0000', 20.50, '50000'),
+  ('E002', 'MTN000', 'C000', '2015-04-13', 'V0000', 20.50, '50000'),
+
+  ('E003', 'MTN003', 'C000', '2015-04-13', 'V0000', 30.00, '50000'),
+
   ('E001', 'MTN001', 'C000', '2016-04-30', 'V0000', 30.00, '65000'),
+
   ('E006', 'MTN001', 'C001', '2016-04-11', 'V0001', 30.00, '70000'),
+
   ('E001', 'MTN002', 'C001', '2016-04-13', 'V0001', 35.00, '85000'),
+
   ('E001', 'MTN001', 'C001', '2017-04-13', 'V0001', 30.00, '95000'),
+
   ('E001', 'MTN001', 'C002', '2016-04-13', 'V0002', 30.00, '95000'),
+
   ('E001', 'MTN001', 'C003', '2017-04-13', 'V0003', 30.00, '95000'),
+
   ('E001', 'MTN001', 'C004', '2016-12-13', 'V0004', 30.00, '85000'),
   ('E001', 'MTN001', 'C004', '2017-04-13', 'V0004', 30.00, '85000'),
   ('E001', 'MTN001', 'C005', '2015-04-13', 'V0005', 30.00, '95000'),
@@ -275,10 +288,10 @@ insert into MaintenanceVisitOrder
   ('E001', 'MTN001', 'C014', '2015-4-13', 'V0014', 30.00, '95000'),
 
 insert into Premier (calculatedAnnualFee, Customer_customerID) values
-  ('2500.00', 'C011');
-  ('2500.00', 'C012');
-  ('2500.00', 'C013');
-  ('2500.00', 'C014');
+  ('2400.00', 'C011');
+  ('2400.00', 'C012');
+  ('2400.00', 'C013');
+  ('2400.00', 'C014');
 
 
 insert into Prospective
@@ -289,15 +302,28 @@ insert into Prospective
 insert into Corporation
   (Customer_customerID, mailing, billing, vehiclePickup, vehicleDelivery) values
   ('C006','999 Park St Willow,CA 90734','897 Bumpy Road Bell,CA 67899','677 Loopy St Compton,CA 90766','456 ADC lane Rift,CA 90756'),
-  ('C007','444 Park St Willow,CA 90734','345 Bumpy Road Bell,CA 67899','666 Loopy St Compton,CA 90766','789 ADC lane Rift,CA 90756');
+  ('C007','444 Cavs St Willow,OH 90734','345 Cleveland Blvd, OH 67899','123 El Sugundo LAX,CA 90766','123 Staples Center,CA 90756');
 
 insert into Individual(homeAddress, Customer_customerID) values
-  ('345 Acer Rd Lakewood, CA 90445', 'C005'),
-  ('778 Bellflower Ave Long Beach, CA 90444', 'C004');
+  ('1200 Bellflower Blvd Long Beach, CA 90806', 'C000'),
+  ('345 Acer Rd Lakewood, CA 90445', 'C001'),
+  ('346 Acer Rd Lakewood, CA 90445', 'C002'),
+  ('347 Acer Rd Lakewood, CA 90445', 'C003'),
+  ('778 Bellflower Ave Long Beach, CA 90444', 'C004'),
+  ('345 Spring St  Signal Hill, CA 90813', 'C005'),
+  ('445 Spring St  Signal Hill, CA 90813', 'C008'),
+  ('545 Spring St  Signal Hill, CA 90813', 'C009'),
+  ('645 Spring St  Signal Hill, CA 90813', 'C010'),
 
 insert into MonthlyPayment (Premier_Customer_customerID,paymentDate, paymentAmount) values
-  ('C011', '2012-3-23', '50'),
-  ('C011', '2012-4-23', '50');
+  ('C011', '2015-3-23', '200'),
+  ('C011', '2015-4-23', '200');
+  ('C012', '2015-3-23', '200'),
+  ('C012', '2015-4-23', '200');
+  ('C013', '2015-3-23', '200'),
+  ('C013', '2015-4-23', '200');
+  ('C014', '2015-3-23', '200'),
+  ('C014', '2015-4-23', '200');
 
 insert into Outreach (Date, Type, Prospective_prospectiveID) values
   ('2017-11-1', 'Prospective', 'PRSP000'),

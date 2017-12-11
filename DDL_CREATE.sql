@@ -88,7 +88,6 @@ CREATE TABLE Outreach (
 CREATE TABLE Package (
     PackageID varchar(50) NOT NULL,
     PackageName varchar(50) NOT NULL,
-    Interval varchar(50) NOT NULL,
     CONSTRAINT Package_pk PRIMARY KEY (PackageID)
 );
 
@@ -160,7 +159,7 @@ CREATE TABLE Vehicle (
     make varchar(50) NOT NULL,
     model varchar(50) NOT NULL,
     vehicleYear varchar(50) NOT NULL,
-    estimatedMileage varchar(50) NOT NULL,
+    estimatedMileagePerYear varchar(50) NOT NULL,
     Customer_customerID varchar(50) NOT NULL,
     Package_PackageID varchar(50),
     CONSTRAINT Vehicle_pk PRIMARY KEY (VIN)

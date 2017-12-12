@@ -223,7 +223,7 @@ insert into ServiceAppointment
 
 insert into MaintenanceItem(maintID, cost, itemName, Package_PackageID,Skill_skillRequired) values
   ('MTNBSC000', 30.00, 'Oil Change', 'BASIC', 'oil change'),
-  ('MTNBSC001', 40.00, 'Tire rotation', 'BASIC', tire'),
+  ('MTNBSC001', 40.00, 'Tire rotation', 'BASIC', 'tire'),
   ('MTNBRZ000', 35.00, 'Fuel System', 'BRONZE', 'fuel system'),
   ('MTNBRZ001', 40.00, 'Lucas Additive', 'BRONZE', 'front end'),
   ('MTNSIL000', 45.00, 'Axle Service', 'SILVER', 'suspension'),
@@ -239,8 +239,8 @@ insert into MaintenanceItem(maintID, cost, itemName, Package_PackageID,Skill_ski
   ('MTN003', 50.00, 'Engine Clean', 'PKG001', 'engine'),
   ('MTN004', 80.00, 'Engine Ring Replacement', 'PKG001', 'ring replacement'),
   ('MTN005a', 60.00, 'Tire Change', 'PKG002', 'suspension'),
-  ('MTN005b', 15.00, 'Rim Clean', 'PKG002', clean'),
-  ('MTN006', 55.00, 'Check Up', 'PKG003', 'engine'),
+  ('MTN005b', 15.00, 'Rim Clean', 'PKG002', 'clean'),
+  ('MTN006', 55.00, 'CheckUp', 'PKG003', 'engine'),
   ('MTN007', 20.00, 'Wind Shield', 'PKG003', 'front end'),
   ('MTN008', 25.00, 'Axle Service', 'PKG004', 'suspension'),
   ('MTN009', 30.00, 'Shocks', 'PKG004', 'suspension'),
@@ -248,7 +248,7 @@ insert into MaintenanceItem(maintID, cost, itemName, Package_PackageID,Skill_ski
   ('MTN011', 130.00, 'Power Train', 'PKG005', 'transmission'),
   ('MTN012', 130.00, 'Drive Train', 'PKG005', 'transmisson'),
   ('MTN013', 40.00, 'Lucas Additive', 'PKG006', 'front end'),
-  ('MTN014', 40.00, ‘HeadLight Clean', 'PKG006', 'front end'),
+  ('MTN014', 40.00, 'HeadLight Clean', 'PKG006', 'front end'),
   ('MTN015', 30.00, 'Transmission Fluid Drain', 'PKG007', 'transmission'),
   ('MTN016', 20.00, 'Transmission Fluid Filter', 'PKG007', 'transmission'),
   ('MTN017', 30.00, 'Oil Change', 'PKG008', 'oil change'),
@@ -256,12 +256,12 @@ insert into MaintenanceItem(maintID, cost, itemName, Package_PackageID,Skill_ski
   ('MTN019', 30.00, 'Brakes', 'PKG009', 'brakes'),
   ('MTN020', 30.00, 'Brake pad change', 'PKG009', 'brakes'),
   ('MTN021', 30.00, 'Brake Fluid Drain', 'PKG009', 'transmission'),
-  ('MTN022', 35.00, 'Drum Replacement', ‘PKG009’, 'brakes’);
+  ('MTN022', 35.00, 'Drum Replacement', 'PKG009', 'brakes'),
   ('MTN023', 15.00, 'Car Wash', null, 'clean'),
   ('MTN024', 15.00, 'Car Wax', null, 'clean'),
   ('MTN025', 35.00, 'Brake Fluid Change', null, 'oil change'),
   ('MTN026', 30.00, 'Rebuild Engine', null, 'engine'),
-  ('MTN027', 15.00, 'Tire Rotation', null, 'front end'),
+  ('MTN027', 15.00, 'Tire Rotation', null, 'front end');
 
 insert into MaintenanceVisitOrder
   (Mechanic_Employee_EmployeeID,MaintenanceItem_maintID, ServiceAppointment_Customer_customerID,
@@ -328,12 +328,12 @@ insert into MaintenanceVisitOrder
   ('E003', 'MTNGLD003', 'C013', '2017-6-13', 'V0013', 15.00, '80000'), 
   ('E004', 'MTNGLD004', 'C013', '2017-6-13', 'V0013', 30.00, '80000'), 
 
-  ('E001', 'MTN024', 'C014', '2015-4-21', 'V0014', 15.00, '25000'), -- null
+  ('E001', 'MTN024', 'C014', '2015-4-21', 'V0014', 15.00, '25000'); -- null
 
 insert into Premier (calculatedAnnualFee, Customer_customerID) values
-  ('2400.00', 'C011');
-  ('2400.00', 'C012');
-  ('2400.00', 'C013');
+  ('2400.00', 'C011'),
+  ('2400.00', 'C012'),
+  ('2400.00', 'C013'),
   ('2400.00', 'C014');
 
 
@@ -356,15 +356,15 @@ insert into Individual(homeAddress, Customer_customerID) values
   ('345 Spring St  Signal Hill, CA 90813', 'C005'),
   ('445 Spring St  Signal Hill, CA 90813', 'C008'),
   ('545 Spring St  Signal Hill, CA 90813', 'C009'),
-  ('645 Spring St  Signal Hill, CA 90813', 'C010'),
+  ('645 Spring St  Signal Hill, CA 90813', 'C010');
 
 insert into MonthlyPayment (Premier_Customer_customerID,paymentDate, paymentAmount) values
   ('C011', '2015-3-23', '200'),
-  ('C011', '2015-4-23', '200');
+  ('C011', '2015-4-23', '200'),
   ('C012', '2015-3-23', '200'),
-  ('C012', '2015-4-23', '200');
+  ('C012', '2015-4-23', '200'),
   ('C013', '2015-3-23', '200'),
-  ('C013', '2015-4-23', '200');
+  ('C013', '2015-4-23', '200'),
   ('C014', '2015-3-23', '200'),
   ('C014', '2015-4-23', '200');
 
@@ -375,14 +375,19 @@ insert into Outreach (Date, Type, Prospective_prospectiveID) values
   ('2017-12-1', 'Steady', 'PRSP001');
 
 insert into Steady (Customer_customerID, loyaltyPoints, email) values
-  ('C000', 340, 'johndoe@gmail.com');
-  ('C001', 400, 'carloslomeili@gmail.com');
-  ('C002', 500, 'johndavis@gmail.com');
-  ('C003', 210, 'raychin@gmail.com');
-  ('C004', 640, 'davebrown@gmail.com');
-  ('C005', 390, 'lukeskywalker@gmail.com');
-  ('C006', 340, 'turkbryant@gmail.com');
-  ('C007', 340, 'lebronjames@gmail.com');
-  ('C008', 140, 'elliotreid@gmail.com');
-  ('C009', 20, 'mattfox@gmail.com');
-  ('C010', 80, 'patrickly@gmail.com');
+  ('C000', 340, 'johndoe@gmail.com'),
+  ('C001', 400, 'carloslomeili@gmail.com'),
+  ('C002', 500, 'johndavis@gmail.com'),
+  ('C003', 210, 'raychin@gmail.com'),
+  ('C004', 640, 'davebrown@gmail.com'),
+  ('C005', 390, 'lukeskywalker@gmail.com'),
+  ('C006', 340, 'turkbryant@gmail.com'),
+  ('C007', 340, 'lebronjames@gmail.com'),
+  ('C008', 140, 'elliotreid@gmail.com'),
+  ('C009', 20, 'mattfox@gmail.com'),
+  ('C010', 80, 'patrickly@gmail.com'); 
+
+
+
+
+

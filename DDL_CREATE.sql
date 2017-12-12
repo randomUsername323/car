@@ -79,10 +79,10 @@ CREATE TABLE MonthlyPayment (
 );
 
 CREATE TABLE Outreach (
-    Date date NOT NULL,
-    Type varchar(50) NOT NULL,
-    Prospective_prospectiveID varchar(50) NOT NULL,
-    CONSTRAINT Outreach_pk PRIMARY KEY (Date,Prospective_prospectiveID)
+    ContactDate date NOT NULL,
+    Prospective_Customer_customerID varchar(50) NOT NULL,
+    Customer_customerID varchar(50) NOT NULL,
+    CONSTRAINT Outreach_pk PRIMARY KEY (ContactDate,Prospective_Customer_customerID,Customer_customerID)
 );
 
 CREATE TABLE Package (
@@ -109,16 +109,17 @@ CREATE TABLE Prospective (
     Customer_customerID varchar(50) NOT NULL,
     ProsEmail varchar(50) NOT NULL,
     isDeadProspect boolean NOT NULL,
-    Referral_Date date NOT NULL,
     Referral_Existing_customerID varchar(50) NOT NULL,
+    Referral_RefDate date NOT NULL,
     CONSTRAINT Prospective_pk PRIMARY KEY (Customer_customerID)
 );
 
 CREATE TABLE Referral (
-    Date date NOT NULL,
+    Customer_customerID varchar(50) NOT NULL,
+    RefDate date NOT NULL,
     Type varchar(50) NOT NULL,
     Existing_customerID varchar(50) NOT NULL,
-    CONSTRAINT Outreach_pk PRIMARY KEY (Date,Existing_customerID)
+    CONSTRAINT Outreach_pk PRIMARY KEY (Customer_customerID,RefDate)
  );
 
 CREATE TABLE ServiceAppointment (
@@ -219,8 +220,11 @@ ALTER TABLE Mentoring ADD CONSTRAINT Mentoring_Skill FOREIGN KEY Mentoring_Skill
 ALTER TABLE MonthlyPayment ADD CONSTRAINT MonthlyPayment_Premier FOREIGN KEY MonthlyPayment_Premier (Premier_Customer_customerID)
     REFERENCES Premier (Customer_customerID);
 
-ALTER TABLE Outreach ADD CONSTRAINT Outreach_Prospective FOREIGN KEY Outreach_Prospective (Prospective_prospectiveID)
-    REFERENCES Prospective (prospectiveID);
+ALTER TABLE Outreach ADD CONSTRAINT Outreach_Customer FOREIGN KEY Outreach_Customer (Customer_customerID)
+    REFERENCES Customer (customerID);
+
+ALTER TABLE Outreach ADD CONSTRAINT Outreach_Prospective FOREIGN KEY Outreach_Prospective (Prospective_Customer_customerID)
+    REFERENCES Prospective (Customer_customerID);
 
 ALTER TABLE Premier ADD CONSTRAINT Premier_Customer FOREIGN KEY Premier_Customer (Customer_customerID)
     REFERENCES Customer (customerID);
@@ -228,10 +232,10 @@ ALTER TABLE Premier ADD CONSTRAINT Premier_Customer FOREIGN KEY Premier_Customer
 ALTER TABLE Prospective ADD CONSTRAINT Prospective_Customer FOREIGN KEY Prospective_Customer (Customer_customerID)
     REFERENCES Customer (customerID);
 
-ALTER TABLE Prospective ADD CONSTRAINT Prospective_Referral FOREIGN KEY Prospective_Referral (Referral_Date,Referral_Existing_customerID)
-   REFERENCES Referral (Date,Existing_customerID);
+ALTER TABLE Prospective ADD CONSTRAINT Prospective_Referral FOREIGN KEY Prospective_Referral (Referral_Existing_customerID,Referral_RefDate)
+    REFERENCES Referral (Customer_customerID,RefDate);
 
-ALTER TABLE Referral ADD CONSTRAINT Referral_Customer FOREIGN KEY Referral_Customer (Existing_customerID)
+ALTER TABLE Referral ADD CONSTRAINT Referral_Customer FOREIGN KEY Referral_Customer (Customer_customerID)
     REFERENCES Customer (customerID);
 
 ALTER TABLE ServiceAppointment ADD CONSTRAINT ServiceAppointment_Customer FOREIGN KEY ServiceAppointment_Customer (Customer_customerID)

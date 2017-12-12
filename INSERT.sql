@@ -353,18 +353,19 @@ insert into Referral (Customer_customerID, RefDate, Type) values
     ('C000', '2016-06-22', 'Steady'),
     ('C001', '2016-03-22', 'Prospective');
 
+
 insert into Prospective
   (Customer_customerID, ProsEmail, isDeadProspect, Referral_Existing_customerID, Referral_RefDate) values
 ('C015', 'louWillie@gmail.com', 0, 'C000',  '2016-06-22'),
 ('C016', 'petePikle@yahoo.com', 1, 'C001', '2016-03-22');
 
 insert into Outreach
-( ContactDate,  Prospective_Customer_customerID, Customer_customerID) values
- ('2016-04-22', 'C015', 'C000'),
- ('2016-05-22', 'C015', 'C000'),
- ('2016-01-22', 'C016', 'C001'),
- ('2016-02-22', 'C016', 'C001'),
- ('2016-03-22', 'C016', 'C001');
+( ContactDate,  Prospective_Customer_customerID) values
+ ('2016-04-22', 'C015'),
+ ('2016-05-22', 'C015'),
+ ('2016-01-22', 'C016'),
+ ('2016-02-22', 'C016'),
+ ('2016-03-22', 'C016');
 
 insert into Corporation
   (Customer_customerID, mailing, billing, vehiclePickup, vehicleDelivery) values

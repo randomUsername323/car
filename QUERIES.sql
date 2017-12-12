@@ -56,10 +56,14 @@ SELECT customer.customerid, person.`FirstName`, person.`LastName`, SUM(totalcost
 
 
 /* 4 */
-SELECT p.`FirstName`, p.`LastName`, c.`Mechanic_Employee_EmployeeID` from person p INNER JOIN employee e ON
-	p.`PersonID` = e.`Person_PersonID` INNER JOIN mechanic m ON e.`EmployeeID` = m.`Employee_EmployeeID` INNER JOIN certification c
-	on m.`Employee_EmployeeID` = c.`Mechanic_Employee_EmployeeID` INNER JOIN skill s on c.`Skill_skillName` = s.`skillName`
-	GROUP BY p.`FirstName`, p.`LastName`, c.`Mechanic_Employee_EmployeeID` HAVING COUNT(c.`Skill_skillName`) > 2;
+SELECT Mechanic_Employee_EmployeeID as 'EmployeeID', p.FirstName, p.LastName, COUNT(Skill_skillName) AS SkillCount
+FROM certification cert
+INNER JOIN Employee e 
+ON cert.Mechanic_Employee_EmployeeID = e.EmployeeID
+INNER JOIN Person p
+on p.PersonID = e.Person_PersonID
+GROUP BY e.EmployeeID HAVING COUNT(Skill_skillName) > 2;
+
 
 
 

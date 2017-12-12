@@ -131,6 +131,18 @@ LIMIT 5;
 
 
 
+/* 13 */
+SELECT mn.`MentorID` AS MentorWithMostMentee, mn.`Skill_skillName` AS SkillsPassingAlong
+	FROM mechanic mc INNER JOIN mentoring mn ON mc.`Employee_EmployeeID` = mn.`MentorID`
+	INNER JOIN
+	(SELECT MentorWithMenteeCount.MentorID, MAX(MentorWithMenteeCount.MenteeCount) FROM
+    	(SELECT mn2.`MentorID`, COUNT(mn2.`MenteeID`) AS MenteeCount FROM mechanic mc2
+        	INNER JOIN mentoring mn2 ON mc2.`Employee_EmployeeID` = mn2.`MentorID`
+        	GROUP BY mn2.`MentorID`) as MentorWithMenteeCount) AS MentorWithMaxMentee
+	ON mn.`MentorID` = MentorWithMaxMentee.MentorID
+
+
+
 /* 15 */
 SELECT e.EMPLOYEEID, 'Technician' AS Occupation FROM employee e INNER JOIN technician t ON e.EMPLOYEEID = t.employee_employeeid
 	WHERE e.EMPLOYEEID IN (SELECT e.EMPLOYEEID FROM employee e INNER JOIN technician t ON e.EMPLOYEEID = t.EMPLOYEE_EMPLOYEEID)

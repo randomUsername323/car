@@ -354,7 +354,7 @@ insert into Referral (Customer_customerID, RefDate, Type) values
     ('C001', '2016-03-22', 'Prospective');
 
 insert into Prospective
-  (Customer_customerID, ProsEmail, isDeadProspect, Referral_Existing_customerID, Referral_Date) values
+  (Customer_customerID, ProsEmail, isDeadProspect, Referral_Existing_customerID, Referral_RefDate) values
 ('C015', 'louWillie@gmail.com', 0, 'C000',  '2016-06-22'),
 ('C016', 'petePikle@yahoo.com', 1, 'C001', '2016-03-22');
 

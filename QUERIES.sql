@@ -203,18 +203,24 @@ SELECT itemname FROM maintenanceitem WHERE package_packageid IS NULL;
 
 
 /* 18 */
-	--1) A mechanic can have a list of certifications
-	SELECT employee_employeeid, skillname, dateearned FROM mechanic m INNER JOIN certification c ON
-    	m.EMPLOYEE_EMPLOYEEID = c.MECHANIC_EMPLOYEE_EMPLOYEEID INNER JOIN skill s ON s.SKILLNAME = c.SKILL_SKILLNAME;
+--1) A mechanic can have a list of certifications
+	SELECT employee_employeeid, p.firstName, p.lastName, skillname, dateearned FROM mechanic m INNER JOIN certification c ON
+    	m.EMPLOYEE_EMPLOYEEID = c.MECHANIC_EMPLOYEE_EMPLOYEEID INNER JOIN skill s ON s.SKILLNAME = c.SKILL_SKILLNAME 
+        INNER JOIN employee e on e.employeeid = m.EMPLOYEE_EMPLOYEEID INNER JOIN person p on p.PersonId = e.Person_PersonId;
 
 
 
-	--2) Technicians receive a Salary, Mechanics get paid on an hourly basis
-	SELECT e.EMPLOYEEID, 'Salary' AS TypeOfPayment FROM employee e inner join technician t ON
-    	e.EMPLOYEEID = t.EMPLOYEE_EMPLOYEEID
+
+--2) Technicians receive a Salary, Mechanics get paid on an hourly basis
+	SELECT e.EMPLOYEEID, p.FirstName, p.LastName, 'Salary' AS TypeOfPayment FROM employee e inner join technician t ON
+    	e.EMPLOYEEID = t.EMPLOYEE_EMPLOYEEID inner join person p ON
+        p.PersonID = e.Person_PersonID
 	UNION
-	SELECT e.EMPLOYEEID, 'Hourly Rate' AS TypeOfPayment FROM employee e inner join mechanic m ON
-    	e.EMPLOYEEID = m.EMPLOYEE_EMPLOYEEID;
+	SELECT e.EMPLOYEEID, p2.FirstName, p2.LastName, 'Hourly Rate' AS TypeOfPayment FROM employee e inner join mechanic m ON
+    	e.EMPLOYEEID = m.EMPLOYEE_EMPLOYEEID inner join person p2 on
+        p2.PersonID = e.Person_PersonID;
+
+
     
   	  --3) Estimated Yearly Mileage must be greater than 100 miles
 	SELECT estimatedMileagePerYear FROM vehicle;
@@ -223,7 +229,9 @@ SELECT itemname FROM maintenanceitem WHERE package_packageid IS NULL;
 
 
         --4) A mechanic's hourly rate cannot be less than $10.00 
-        SELECT * from mechanic where hourlyRate >= 10.00;
+        SELECT e.EmployeeID, p.FirstName, p.LastName, mechanic.hourlyRate from mechanic inner join employee e ON e.EmployeeID = mechanic.Employee_EmployeeID 
+        inner join person p ON p.PersonID = e.Person_PersonID where hourlyRate >= 10.00;
+
 
 
 

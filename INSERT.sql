@@ -250,7 +250,7 @@ insert into MaintenanceItem(maintID, cost, itemName, Package_PackageID,Skill_ski
   ('MTN009', 30.00, 'Shocks', 'PKG004', 'suspension'),
   ('MTN010', 30.00, 'Struts', 'PKG004', 'suspension'),
   ('MTN011', 130.00, 'Power Train', 'PKG005', 'transmission'),
-  ('MTN012', 130.00, 'Drive Train', 'PKG005', 'transmisson'),
+  ('MTN012', 130.00, 'Drive Train', 'PKG005', 'transmission'),
   ('MTN013', 40.00, 'Lucas Additive', 'PKG006', 'front end'),
   ('MTN014', 40.00, 'HeadLight Clean', 'PKG006', 'front end'),
   ('MTN015', 30.00, 'Transmission Fluid Drain', 'PKG007', 'transmission'),

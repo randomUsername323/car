@@ -111,8 +111,23 @@ SELECT c.`customerID`, SUM(m.`TotalCostOfService`) SpendingTotal
 	GROUP BY c.`customerID`);
 
 /*11*/
-SELECT Customer_customerID, (calculatedAnnualFee*12) AS SUM_PAYMENTS FROM Premier
+SELECT distinct Premier_Customer_customerID, (paymentAmount*12) AS SUM_PAYMENTS FROM MonthlyPayment
 ORDER BY SUM_PAYMENTS;
+
+/* 12 */
+SELECT VisitCount.make, VisitCount.model, VisitCount.`vehicleYear`, (VisitCount.visits / VehicleCount.total) as visit_average
+FROM
+( SELECT v.make, v.model, v.`vehicleYear`, COUNT(sa.`appDate`) as visits FROM Vehicle v
+	INNER JOIN ServiceAppointment sa ON v.`VIN` = sa.`Vehicle_VIN`
+	WHERE sa.`appDate` BETWEEN DATE_SUB(NOW(), INTERVAL 3 YEAR) AND NOW()
+	GROUP BY v.make, v.model, v.vehicleYear ) AS VisitCount
+INNER JOIN
+( SELECT v2.make, v2.model, v2.`vehicleYear`, COUNT(*) as total FROM Vehicle v2
+	GROUP BY v2.make, v2.model, v2.vehicleYear ) as VehicleCount
+	ON VisitCount.make = VehicleCount.make and VisitCount.model = VehicleCount.model
+   	and VisitCount.vehicleYear = VehicleCount.vehicleYear
+ORDER BY visit_average DESC
+LIMIT 5;
 
 
 

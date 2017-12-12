@@ -106,14 +106,21 @@ CREATE TABLE Premier (
 );
 
 CREATE TABLE Prospective (
-    prospectiveID varchar(50) NOT NULL,
+     Customer_customerID varchar(50) NOT NULL,
     ProsCellPhoneNumber varchar(50) NOT NULL,
     ProsEmail varchar(50) NOT NULL,
     isDeadProspect boolean NOT NULL,
-    Customer_customerID varchar(50) NOT NULL,
-    Person_PersonID varchar(50) NOT NULL,
-    CONSTRAINT Prospective_pk PRIMARY KEY (prospectiveID)
+    Referral_Date date NOT NULL,
+    Referral_Existing_customerID varchar(50) NOT NULL,
+    CONSTRAINT Prospective_pk PRIMARY KEY (Customer_customerID)
 );
+
+CREATE TABLE Referral (
+    Date date NOT NULL,
+    Type varchar(50) NOT NULL,
+    Existing_customerID varchar(50) NOT NULL,
+    CONSTRAINT Outreach_pk PRIMARY KEY (Date,Existing_customerID)
+ );
 
 CREATE TABLE ServiceAppointment (
     appDate date NOT NULL,
@@ -222,8 +229,11 @@ ALTER TABLE Premier ADD CONSTRAINT Premier_Customer FOREIGN KEY Premier_Customer
 ALTER TABLE Prospective ADD CONSTRAINT Prospective_Customer FOREIGN KEY Prospective_Customer (Customer_customerID)
     REFERENCES Customer (customerID);
 
-ALTER TABLE Prospective ADD CONSTRAINT Prospective_Person FOREIGN KEY Prospective_Person (Person_PersonID)
-    REFERENCES Person (PersonID);
+ALTER TABLE Prospective ADD CONSTRAINT Prospective_Referral FOREIGN KEY Prospective_Referral (Referral_Date,Referral_Existing_customerID)
+   REFERENCES Referral (Date,Existing_customerID);
+
+ALTER TABLE Referral ADD CONSTRAINT Referral_Customer FOREIGN KEY Referral_Customer (Existing_customerID)
+    REFERENCES Customer (customerID);
 
 ALTER TABLE ServiceAppointment ADD CONSTRAINT ServiceAppointment_Customer FOREIGN KEY ServiceAppointment_Customer (Customer_customerID)
     REFERENCES Customer (customerID);

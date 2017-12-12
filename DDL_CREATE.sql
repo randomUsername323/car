@@ -118,7 +118,6 @@ CREATE TABLE Referral (
     Customer_customerID varchar(50) NOT NULL,
     RefDate date NOT NULL,
     Type varchar(50) NOT NULL,
-    Existing_customerID varchar(50) NOT NULL,
     CONSTRAINT Outreach_pk PRIMARY KEY (Customer_customerID,RefDate)
  );
 

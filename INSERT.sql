@@ -102,8 +102,8 @@ insert into Mentoring(Skill_skillName, MentorID, MenteeID, startDate, endDate) v
   ('brakes', 'E000', 'E002', '2015-07-29', '2016-04-11'),
   ('engine', 'E000', 'E010', '2015-07-29', '2016-04-11'),
   ('air conditioning', 'E000', 'E003', '2015-07-29', '2016-04-11'),
-  ('suspension', 'E010', 'E006', '2015-08-29', '2016-07-11'),
-  ('suspension', 'E010', 'E005', '2015-08-29', '2016-08-11'),
+  ('suspension', 'E000', 'E006', '2015-08-29', '2016-07-11'),
+  ('suspension', 'E000', 'E005', '2015-08-29', '2016-08-11'),
   ('suspension', 'E010', 'E004', '2015-08-29', '2016-09-11'),
   ('suspension', 'E010', 'E003', '2015-08-29', '2016-10-11');
 
@@ -335,6 +335,7 @@ insert into MaintenanceVisitOrder
   ('E004', 'MTNGLD004', 'C013', '2017-06-13', 'V0013', 30.00, '80000'), 
 
   ('E001', 'MTN024', 'C014', '2015-04-21', 'V0014', 15.00, '25000'); -- null
+
 
 
 insert into Premier (calculatedAnnualFee, Customer_customerID) values

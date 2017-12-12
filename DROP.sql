@@ -48,6 +48,9 @@ ALTER TABLE MonthlyPayment
     DROP FOREIGN KEY MonthlyPayment_Premier;
 
 ALTER TABLE Outreach
+    DROP FOREIGN KEY Outreach_Customer;
+
+ALTER TABLE Outreach
     DROP FOREIGN KEY Outreach_Prospective;
 
 ALTER TABLE Premier
@@ -57,7 +60,10 @@ ALTER TABLE Prospective
     DROP FOREIGN KEY Prospective_Customer;
 
 ALTER TABLE Prospective
-    DROP FOREIGN KEY Prospective_Person;
+    DROP FOREIGN KEY Prospective_Referral;
+
+ALTER TABLE Referral
+    DROP FOREIGN KEY Referral_Customer;
 
 ALTER TABLE ServiceAppointment
     DROP FOREIGN KEY ServiceAppointment_Customer;
@@ -117,6 +123,9 @@ DROP TABLE Premier;
 
 DROP TABLE Prospective;
 
+DROP TABLE Referral;
+
+
 DROP TABLE ServiceAppointment;
 
 DROP TABLE ServiceInterval;
@@ -128,3 +137,5 @@ DROP TABLE Steady;
 DROP TABLE Technician;
 
 DROP TABLE Vehicle;
+
+

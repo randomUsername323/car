@@ -167,7 +167,7 @@ SELECT mn.`MentorID` AS MentorWithMostMentee, mn.`Skill_skillName` AS SkillsPass
     	(SELECT mn2.`MentorID`, COUNT(mn2.`MenteeID`) AS MenteeCount FROM mechanic mc2
         	INNER JOIN mentoring mn2 ON mc2.`Employee_EmployeeID` = mn2.`MentorID`
         	GROUP BY mn2.`MentorID`) as MentorWithMenteeCount) AS MentorWithMaxMentee
-	ON mn.`MentorID` = MentorWithMaxMentee.MentorID
+	ON mn.`MentorID` = MentorWithMaxMentee.MentorID;
 
 /* 14 */
 SELECT Skill_skillname, COUNT(Mechanic_Employee_EmployeeID) as Numb  FROM Certification 

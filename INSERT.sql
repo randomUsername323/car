@@ -21,8 +21,8 @@ insert into Person (PersonID, FirstName, LastName, Birthdate) values
   ('PSN019','Bob','Kelso', '1940-12-30'),
   ('PSN020','Elliot','Reid', '1944-12-29'),
   ('PSN021','Matt','Fox', '1952-8-29'),
-  ('PSN022','Pete','Pikle', '1966-12-19'),
-  ('PSN023','Lou','Williams', '1970-12-27'),
+  ('PSN022','Pete','Pikle', '1966-12-19'), -- prospective
+  ('PSN023','Lou','Williams', '1970-12-27'), -- prospective
   ('PSN024','Patrick','Ly','1990-11-19'),
   ('PSN025','Pat','Chin','1991-11-19'),
   ('PSN026','Carl','Lewis','1992-11-19'),
@@ -70,7 +70,11 @@ insert into Customer
   ('C011', '156-234-2844', 2009, 'PSN025'),
   ('C012', '156-334-2844', 2013, 'PSN026'),
   ('C013', '156-274-2844', 2015, 'PSN027'),
-  ('C014', '156-294-2844', 2010, 'PSN028');
+  ('C014', '156-294-2844', 2010, 'PSN028'),
+  ('C015', '777-294-2844', 2016, 'PSN022'),
+  ('C016', '888-294-2844', 2016, 'PSN023');
+
+
 
 insert into Technician (Employee_EmployeeID, specialty, salary) values
   ('E002', 'wheels', '50,000'),
@@ -345,10 +349,22 @@ insert into Premier (calculatedAnnualFee, Customer_customerID) values
   ('2400.00', 'C014');
 
 
+insert into Referral (Customer_customerID, RefDate, Type) values
+    ('C000', '2016-06-22', 'Steady'),
+    ('C001', '2016-03-22', 'Prospective');
+
 insert into Prospective
-  (prospectiveID,ProsCellPhoneNumber, ProsEmail, isDeadProspect, Customer_customerID, Person_PersonID) values
-  ('PRSP000', '404-124-4444','louWillie@gmail.com', 1, 'C000', 'PSN023'),
-  ('PRSP001', '463-234-9345','petePikle@yahoo.com', 0, 'C001', 'PSN022');
+  (Customer_customerID, ProsEmail, isDeadProspect, Referral_Existing_customerID, Referral_Date) values
+('C015', 'louWillie@gmail.com', 0, 'C000',  '2016-06-22'),
+('C016', 'petePikle@yahoo.com', 1, 'C001', '2016-03-22');
+
+insert into Outreach
+( ContactDate,  Prospective_Customer_customerID, Customer_customerID) values
+ ('2016-04-22', 'C015', 'C000'),
+ ('2016-05-22', 'C015', 'C000'),
+ ('2016-01-22', 'C016', 'C001'),
+ ('2016-02-22', 'C016', 'C001'),
+ ('2016-03-22', 'C016', 'C001');
 
 insert into Corporation
   (Customer_customerID, mailing, billing, vehiclePickup, vehicleDelivery) values
@@ -376,11 +392,6 @@ insert into MonthlyPayment (Premier_Customer_customerID,paymentDate, paymentAmou
   ('C014', '2015-3-23', '200'),
   ('C014', '2015-4-23', '200');
 
-insert into Outreach (Date, Type, Prospective_prospectiveID) values
-  ('2017-09-1', 'Prospective', 'PRSP000'),
-  ('2017-10-1', 'Prospective', 'PRSP000'),
-  ('2017-11-1', 'Prospective', 'PRSP000'),
-  ('2017-12-1', 'Steady', 'PRSP001');
 
 insert into Steady (Customer_customerID, loyaltyPoints, email) values
   ('C000', 340, 'johndoe@gmail.com'),
@@ -394,6 +405,7 @@ insert into Steady (Customer_customerID, loyaltyPoints, email) values
   ('C008', 140, 'elliotreid@gmail.com'),
   ('C009', 20, 'mattfox@gmail.com'),
   ('C010', 80, 'patrickly@gmail.com'); 
+
 
 
 

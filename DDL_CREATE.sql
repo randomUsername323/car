@@ -81,8 +81,7 @@ CREATE TABLE MonthlyPayment (
 CREATE TABLE Outreach (
     ContactDate date NOT NULL,
     Prospective_Customer_customerID varchar(50) NOT NULL,
-    Customer_customerID varchar(50) NOT NULL,
-    CONSTRAINT Outreach_pk PRIMARY KEY (ContactDate,Prospective_Customer_customerID,Customer_customerID)
+    CONSTRAINT Outreach_pk PRIMARY KEY (ContactDate)
 );
 
 CREATE TABLE Package (
@@ -218,10 +217,7 @@ ALTER TABLE Mentoring ADD CONSTRAINT Mentoring_Skill FOREIGN KEY Mentoring_Skill
 
 ALTER TABLE MonthlyPayment ADD CONSTRAINT MonthlyPayment_Premier FOREIGN KEY MonthlyPayment_Premier (Premier_Customer_customerID)
     REFERENCES Premier (Customer_customerID);
-
-ALTER TABLE Outreach ADD CONSTRAINT Outreach_Customer FOREIGN KEY Outreach_Customer (Customer_customerID)
-    REFERENCES Customer (customerID);
-
+    
 ALTER TABLE Outreach ADD CONSTRAINT Outreach_Prospective FOREIGN KEY Outreach_Prospective (Prospective_Customer_customerID)
     REFERENCES Prospective (Customer_customerID);
 

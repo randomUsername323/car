@@ -125,7 +125,7 @@ SELECT c.`customerID`, p.`FirstName`, p.`LastName`, SUM(mp.`paymentAmount`) - SU
 
 
 
-/* 10 * #10 is about Net Profit. Instead of net profit, just calculate the total amount of money spent ./
+/* 10  #10 is about Net Profit. Instead of net profit, just calculate the total amount of money spent */
 SELECT c.`customerID`, SUM(m.`TotalCostOfService`) SpendingTotal
 	FROM customer c INNER JOIN serviceappointment s ON c.`customerID` = s.`Customer_customerID`
 	INNER JOIN maintenancevisitorder m ON s.`Customer_customerID` = m.`ServiceAppointment_Customer_customerID`
@@ -203,7 +203,7 @@ SELECT itemname FROM maintenanceitem WHERE package_packageid IS NULL;
 
 
 /* 18 */
---1) A mechanic can have a list of certifications
+ -- A mechanic can have a list of certifications
 	SELECT employee_employeeid, p.firstName, p.lastName, skillname, dateearned FROM mechanic m INNER JOIN certification c ON
     	m.EMPLOYEE_EMPLOYEEID = c.MECHANIC_EMPLOYEE_EMPLOYEEID INNER JOIN skill s ON s.SKILLNAME = c.SKILL_SKILLNAME 
         INNER JOIN employee e on e.employeeid = m.EMPLOYEE_EMPLOYEEID INNER JOIN person p on p.PersonId = e.Person_PersonId;
@@ -211,7 +211,7 @@ SELECT itemname FROM maintenanceitem WHERE package_packageid IS NULL;
 
 
 
---2) Technicians receive a Salary, Mechanics get paid on an hourly basis
+-- Technicians receive a Salary, Mechanics get paid on an hourly basis
 	SELECT e.EMPLOYEEID, p.FirstName, p.LastName, 'Salary' AS TypeOfPayment FROM employee e inner join technician t ON
     	e.EMPLOYEEID = t.EMPLOYEE_EMPLOYEEID inner join person p ON
         p.PersonID = e.Person_PersonID
@@ -222,7 +222,7 @@ SELECT itemname FROM maintenanceitem WHERE package_packageid IS NULL;
 
 
     
-  	  --3) Estimated Yearly Mileage must be greater than 100 miles
+  	  -- Estimated Yearly Mileage must be greater than 100 miles
 	SELECT estimatedMileagePerYear FROM vehicle;
 
 

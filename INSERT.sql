@@ -408,7 +408,7 @@ insert into Steady (Customer_customerID, loyaltyPoints, email) values
 
 insert into ServiceInterval (S_INTERVAL_ID, intervalMile, Vehicle_VIN,
     Package_PackageID) values
-('SV0000A', '5K', 'V0000', 'BASIC');
+('SV0000A', '5K', 'V0000', 'BASIC'),
 ('SV0000B', '10K', 'V0000', 'BRONZE');
 
 

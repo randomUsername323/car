@@ -133,7 +133,7 @@ CREATE TABLE ServiceAppointment (
 );
 
 CREATE TABLE ServiceInterval (
-    S_INTERVAL_ID int NOT NULL,
+    S_INTERVAL_ID  varchar(50) NOT NULL,
     intervalMile varchar(50) NOT NULL,
     Vehicle_VIN varchar(50) NOT NULL,
     Package_PackageID varchar(50) NOT NULL,

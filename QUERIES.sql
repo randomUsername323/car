@@ -61,32 +61,27 @@ FROM certification cert
 INNER JOIN Employee e 
 ON cert.Mechanic_Employee_EmployeeID = e.EmployeeID
 INNER JOIN Person p
-on p.PersonID = e.Person_PersonID
+ON p.PersonID = e.Person_PersonID
 GROUP BY e.EmployeeID HAVING COUNT(Skill_skillName) > 2;
 
 
 
 
 
+
 /* 5 */
-SELECT ms1.Employee_EmployeeID as mechanic_1, ms2.Employee_EmployeeID as mechanic_2
-FROM
-(SELECT m1.`Employee_EmployeeID`, s1.`skillName`
-	FROM mechanic m1
-	INNER JOIN certification c1
-    	ON m1.EMPLOYEE_EMPLOYEEID = c1.MECHANIC_EMPLOYEE_EMPLOYEEID
-	INNER JOIN skill s1
-    	ON s1.SKILLNAME = c1.SKILL_SKILLNAME) as ms1
-INNER JOIN
-(SELECT m2.`Employee_EmployeeID`, s2.`skillName`
-	FROM mechanic m2
-	INNER JOIN certification c2
-    	ON m2.EMPLOYEE_EMPLOYEEID = c2.MECHANIC_EMPLOYEE_EMPLOYEEID
-	INNER JOIN skill s2
-    	ON s2.SKILLNAME = c2.SKILL_SKILLNAME) AS ms2
-ON ms1.skillname = ms2.skillname AND ms1.Employee_EmployeeID > ms2.Employee_EmployeeID
-GROUP BY ms1.Employee_EmployeeID, ms2.Employee_EmployeeID
-HAVING COUNT(ms1.skillname) > 2;
+SELECT a.Mechanic_Employee_EmployeeID as 'Employee_1_ID', p1.FirstName as 'EMP_1_First Name', p1.LastName as 'EMP_1_Last Name',
+b.Mechanic_Employee_EmployeeID as 'Employee_2_ID', p2.FirstName as 'EMP_2_First Name', p2.LastName as 'EMP_2_Last Name', COUNT(a.Skill_skillName = b.Skill_skillName) as 'SkillsInCommon' 
+FROM certification a INNER JOIN certification b
+ON a.Skill_skillName = b.Skill_skillName INNER JOIN Employee e
+ON e.EmployeeID = a.Mechanic_Employee_EmployeeID INNER JOIN Person p1
+ON p1.PersonID = e.Person_PersonID INNER JOIN Employee e2
+ON e2.EmployeeID = b.Mechanic_Employee_EmployeeID INNER JOIN Person p2
+ON p2.PersonID = e2.Person_PersonID 
+WHERE a.Mechanic_Employee_EmployeeID > b.Mechanic_Employee_EmployeeID
+GROUP BY b.Mechanic_Employee_EmployeeID, a.Mechanic_Employee_EmployeeID  HAVING COUNT(a.Skill_skillName = b.Skill_skillName) > 2;
+
+
 
 
 

@@ -51,7 +51,8 @@ insert into Mechanic(Employee_EmployeeID, hourlyRate) values
   ('E004', '21.57'),
   ('E005', '11.63'),
   ('E006', '10.25'),
-  ('E007', '15.22');
+  ('E007', '15.22'),
+  ('E010', '16.24');
 
 insert into Customer
 (customerID, phoneNumber, yearJoined, Person_PersonID) values
@@ -72,7 +73,7 @@ insert into Customer
   ('C014', '156-294-2844', 2010, 'PSN028');
 
 insert into Technician (Employee_EmployeeID, specialty, salary) values
-  ('E002', 'wheels', '50000'),
+  ('E002', 'wheels', '50,000'),
   ('E008', 'engines', '89,000'),
   ('E009', 'hvac', '66,420'),
   ('E010', 'windows', '44,410'),
@@ -97,14 +98,14 @@ insert into Skill(skillName) values
 insert into Mentoring(Skill_skillName, MentorID, MenteeID, startDate, endDate) values
   ('air conditioning', 'E000', 'E001', '2015-07-29', '2016-04-11'),
   ('smog', 'E004', 'E005', '2015-06-29', '2016-03-11'),
-  ('air conditioning', 'E007', 'E008', '2015-07-29', '2016-04-11'),
+  ('air conditioning', 'E002', 'E004', '2015-07-29', '2016-04-11'),
   ('brakes', 'E000', 'E002', '2015-07-29', '2016-04-11'),
   ('engine', 'E000', 'E010', '2015-07-29', '2016-04-11'),
   ('air conditioning', 'E000', 'E003', '2015-07-29', '2016-04-11'),
-  ('suspension', 'E010', 'E009', '2015-08-29', '2016-07-11'),
-  ('suspension', 'E010', 'E008', '2015-08-29', '2016-08-11'),
-  ('suspension', 'E010', 'E007', '2015-08-29', '2016-09-11'),
-  ('suspension', 'E010', 'E006', '2015-08-29', '2016-10-11');
+  ('suspension', 'E010', 'E006', '2015-08-29', '2016-07-11'),
+  ('suspension', 'E010', 'E005', '2015-08-29', '2016-08-11'),
+  ('suspension', 'E010', 'E004', '2015-08-29', '2016-09-11'),
+  ('suspension', 'E010', 'E003', '2015-08-29', '2016-10-11');
 
 
 insert into Certification (dateEarned, Skill_skillName, Mechanic_Employee_EmployeeID) values
@@ -140,18 +141,6 @@ insert into Certification (dateEarned, Skill_skillName, Mechanic_Employee_Employ
   ('2016-05-11', 'front end', 'E006'),
   ('2016-05-11', 'oil change', 'E006'),
   ('2016-10-11', 'suspension', 'E006'),
-  ('2016-05-10', 'air conditioning', 'E007'),
-  ('2010-01-15', 'clean', 'E007'),
-  ('2016-05-11', 'front end', 'E007'),
-  ('2016-04-11', 'oil change', 'E007'),
-  ('2016-09-11', 'suspension', 'E007'),
-  ('2016-05-10', 'air conditioning', 'E008'),
-  ('2010-01-15', 'clean', 'E008'),
-  ('2016-04-11', 'oil change', 'E008'),
-  ('2016-08-11', 'suspension', 'E008'),
-  ('2015-04-11', 'brakes', 'E009'),
-  ('2010-01-15', 'clean', 'E009'),
-  ('2016-07-11', 'suspension', 'E009'),
   ('2010-01-15', 'clean', 'E010'),
   ('2016-04-11', 'engine', 'E010'),
   ('2016-04-11', 'oil change', 'E010'),
@@ -397,5 +386,3 @@ insert into Steady (Customer_customerID, loyaltyPoints, email) values
   ('C008', 140, 'elliotreid@gmail.com');
   ('C009', 20, 'mattfox@gmail.com');
   ('C010', 80, 'patrickly@gmail.com');
-
-

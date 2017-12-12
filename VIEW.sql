@@ -30,13 +30,18 @@ order by Mentor_type,first_name,last_name;
 
 
 
-/*5 In Progress*/
-select customerID, FirstName, LastName, count(ContactDate) from outreach 
+/*5 */ 
+
+create view Prospective_resurrection_v as
+select customerID, FirstName, LastName, year(now())- year(RefDate) as YearSinceContact, count(ContactDate) from outreach 
 inner join prospective on Prospective_Customer_customerID = Prospective.Customer_customerID
+inner join referral on Prospective.Referral_RefDate = Referral.RefDate
 inner join customer on Prospective.Customer_customerID = Customer.customerID
 inner join person on customer.Person_PersonID = Person.PersonID
-group by customerId, FirstName, LastName
-having count(ContactDate) > 2;
+group by customerId, FirstName, LastName, YearSinceContact
+having count(ContactDate) > 2 and YearSinceContact > 0;
+
+SELECT * FROM Prospective_resurrection_v;
 
 
 

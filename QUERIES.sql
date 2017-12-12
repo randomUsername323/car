@@ -3,7 +3,11 @@ SELECT 'Steady' AS CustomerType, firstname, lastname, birthdate, phonenumber, em
 	person.personid = customer.person_personid RIGHT JOIN steady ON customer.CUSTOMERID = steady.CUSTOMER_CUSTOMERID
 UNION ALL
 SELECT 'Premier' AS CustomerType, firstname, lastname, birthdate, phonenumber, 'N/A' as email FROM person INNER JOIN customer on
-	person.personid = customer.person_personid RIGHT JOIN premier on customer.CUSTOMERID = premier.CUSTOMER_CUSTOMERID;
+	person.personid = customer.person_personid RIGHT JOIN premier on customer.CUSTOMERID = premier.CUSTOMER_CUSTOMERID
+UNION ALL
+SELECT 'Prospective' AS CustomerType, firstname, lastname, birthdate, phonenumber, ProsEmail FROM person INNER JOIN customer on
+	person.personid = customer.person_personid RIGHT JOIN prospective on customer.CUSTOMERID = prospective.CUSTOMER_CUSTOMERID;
+
 
 
 
@@ -57,6 +61,28 @@ SELECT p.`FirstName`, p.`LastName`, c.`Mechanic_Employee_EmployeeID` from person
 	on m.`Employee_EmployeeID` = c.`Mechanic_Employee_EmployeeID` INNER JOIN skill s on c.`Skill_skillName` = s.`skillName`
 	GROUP BY p.`FirstName`, p.`LastName`, c.`Mechanic_Employee_EmployeeID` HAVING COUNT(c.`Skill_skillName`) > 2;
 
+
+
+
+/* 5 */
+SELECT ms1.Employee_EmployeeID as mechanic_1, ms2.Employee_EmployeeID as mechanic_2
+FROM
+(SELECT m1.`Employee_EmployeeID`, s1.`skillName`
+	FROM mechanic m1
+	INNER JOIN certification c1
+    	ON m1.EMPLOYEE_EMPLOYEEID = c1.MECHANIC_EMPLOYEE_EMPLOYEEID
+	INNER JOIN skill s1
+    	ON s1.SKILLNAME = c1.SKILL_SKILLNAME) as ms1
+INNER JOIN
+(SELECT m2.`Employee_EmployeeID`, s2.`skillName`
+	FROM mechanic m2
+	INNER JOIN certification c2
+    	ON m2.EMPLOYEE_EMPLOYEEID = c2.MECHANIC_EMPLOYEE_EMPLOYEEID
+	INNER JOIN skill s2
+    	ON s2.SKILLNAME = c2.SKILL_SKILLNAME) AS ms2
+ON ms1.skillname = ms2.skillname AND ms1.Employee_EmployeeID > ms2.Employee_EmployeeID
+GROUP BY ms1.Employee_EmployeeID, ms2.Employee_EmployeeID
+HAVING COUNT(ms1.skillname) > 2;
 
 
 
@@ -114,6 +140,7 @@ SELECT c.`customerID`, SUM(m.`TotalCostOfService`) SpendingTotal
 SELECT distinct Premier_Customer_customerID, (paymentAmount*12) AS SUM_PAYMENTS FROM MonthlyPayment
 ORDER BY SUM_PAYMENTS;
 
+
 /* 12 */
 SELECT VisitCount.make, VisitCount.model, VisitCount.`vehicleYear`, (VisitCount.visits / VehicleCount.total) as visit_average
 FROM
@@ -141,6 +168,12 @@ SELECT mn.`MentorID` AS MentorWithMostMentee, mn.`Skill_skillName` AS SkillsPass
         	GROUP BY mn2.`MentorID`) as MentorWithMenteeCount) AS MentorWithMaxMentee
 	ON mn.`MentorID` = MentorWithMaxMentee.MentorID
 
+/* 14 */
+SELECT Skill_skillname, COUNT(Mechanic_Employee_EmployeeID) as Numb  FROM Certification 
+GROUP BY Skill_skillname
+ORDER BY COUNT(Mechanic_Employee_EmployeeID) ASC
+LIMIT 3;
+
 
 
 /* 15 */
@@ -152,15 +185,19 @@ SELECT e.EMPLOYEEID, 'Mechanic' AS Occupation FROM employee e INNER JOIN mechani
 
 
 	
+
+/* 16 */
+SELECT s.`intervalMile`, s.`Package_PackageID` FROM vehicle v INNER JOIN serviceinterval s ON v.`VIN` = s.`Vehicle_VIN` INNER JOIN
+	package p ON p.`PackageID` = s.`S_INTERVAL_ID`;
+
+
 /* 17 */
 SELECT itemname FROM maintenanceitem WHERE package_packageid IS NULL;
 
 
 
 
-/* 16 */
-SELECT s.`intervalMile`, s.`Package_PackageID` FROM vehicle v INNER JOIN serviceinterval s ON v.`VIN` = s.`Vehicle_VIN` INNER JOIN
-	package p ON p.`PackageID` = s.`S_INTERVAL_ID`;
+
 
 /* 18 */
 	-- A mechanic can have a list of certifications

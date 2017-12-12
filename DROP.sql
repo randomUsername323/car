@@ -48,9 +48,6 @@ ALTER TABLE MonthlyPayment
     DROP FOREIGN KEY MonthlyPayment_Premier;
 
 ALTER TABLE Outreach
-    DROP FOREIGN KEY Outreach_Customer;
-
-ALTER TABLE Outreach
     DROP FOREIGN KEY Outreach_Prospective;
 
 ALTER TABLE Premier

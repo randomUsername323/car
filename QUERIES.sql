@@ -125,7 +125,7 @@ SELECT c.`customerID`, p.`FirstName`, p.`LastName`, SUM(mp.`paymentAmount`) - SU
 
 
 
-/* 10 */
+/* 10 * #10 is about Net Profit. Instead of net profit, just calculate the total amount of money spent ./
 SELECT c.`customerID`, SUM(m.`TotalCostOfService`) SpendingTotal
 	FROM customer c INNER JOIN serviceappointment s ON c.`customerID` = s.`Customer_customerID`
 	INNER JOIN maintenancevisitorder m ON s.`Customer_customerID` = m.`ServiceAppointment_Customer_customerID`
@@ -134,6 +134,8 @@ SELECT c.`customerID`, SUM(m.`TotalCostOfService`) SpendingTotal
 	(SELECT c.`customerID` FROM customer c INNER JOIN steady s ON c.`customerID` = s.`Customer_customerID`
 	WHERE m.`ServiceAppointment_appDate` >= '2016-01-01' AND m.`ServiceAppointment_appDate` <= '2016-12-31'
 	GROUP BY c.`customerID`);
+
+
 
 /*11*/
 SELECT distinct Premier_Customer_customerID, (paymentAmount*12) AS SUM_PAYMENTS FROM MonthlyPayment
@@ -183,11 +185,13 @@ SELECT e.EMPLOYEEID, 'Mechanic' AS Occupation FROM employee e INNER JOIN mechani
 	WHERE e.EMPLOYEEID IN (SELECT e.EMPLOYEEID FROM employee e INNER JOIN mechanic m ON e.EMPLOYEEID = m.EMPLOYEE_EMPLOYEEID);
 
 
-	
 
 /* 16 */
 SELECT s.`intervalMile`, s.`Package_PackageID` FROM vehicle v INNER JOIN serviceinterval s ON v.`VIN` = s.`Vehicle_VIN` INNER JOIN
-	package p ON p.`PackageID` = s.`S_INTERVAL_ID`;
+	package p ON p.`PackageID` = s.`Package_PackageID`;
+	
+
+
 
 
 /* 17 */
@@ -199,25 +203,26 @@ SELECT itemname FROM maintenanceitem WHERE package_packageid IS NULL;
 
 
 /* 18 */
-	-- A mechanic can have a list of certifications
+	--1) A mechanic can have a list of certifications
 	SELECT employee_employeeid, skillname, dateearned FROM mechanic m INNER JOIN certification c ON
     	m.EMPLOYEE_EMPLOYEEID = c.MECHANIC_EMPLOYEE_EMPLOYEEID INNER JOIN skill s ON s.SKILLNAME = c.SKILL_SKILLNAME;
 
 
 
-	-- Technicians receive a Salary, Mechanics get paid on an hourly basis
+	--2) Technicians receive a Salary, Mechanics get paid on an hourly basis
 	SELECT e.EMPLOYEEID, 'Salary' AS TypeOfPayment FROM employee e inner join technician t ON
     	e.EMPLOYEEID = t.EMPLOYEE_EMPLOYEEID
 	UNION
 	SELECT e.EMPLOYEEID, 'Hourly Rate' AS TypeOfPayment FROM employee e inner join mechanic m ON
     	e.EMPLOYEEID = m.EMPLOYEE_EMPLOYEEID;
     
-	-- Estimated Yearly Mileage must be 18 year-olds or older
-	SELECT estimatedmileage FROM vehicle;
+  	  --3) Estimated Yearly Mileage must be greater than 100 miles
+	SELECT estimatedMileagePerYear FROM vehicle;
 
 
 
-        -- A mechanic's hourly rate cannot be less than $10.00 
+
+        --4) A mechanic's hourly rate cannot be less than $10.00 
         SELECT * from mechanic where hourlyRate >= 10.00;
 
 

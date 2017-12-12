@@ -119,6 +119,8 @@ DROP TABLE Prospective;
 
 DROP TABLE ServiceAppointment;
 
+DROP TABLE ServiceInterval;
+
 DROP TABLE Skill;
 
 DROP TABLE Steady;

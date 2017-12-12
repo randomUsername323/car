@@ -106,8 +106,7 @@ CREATE TABLE Premier (
 );
 
 CREATE TABLE Prospective (
-     Customer_customerID varchar(50) NOT NULL,
-    ProsCellPhoneNumber varchar(50) NOT NULL,
+    Customer_customerID varchar(50) NOT NULL,
     ProsEmail varchar(50) NOT NULL,
     isDeadProspect boolean NOT NULL,
     Referral_Date date NOT NULL,

@@ -10,17 +10,7 @@ SELECT 'Prospective' AS CustomerType, firstname, lastname, birthdate, phonenumbe
 
 
 
-
 /* 2 */
-SELECT customer.customerid, serviceappointment_appdate  AS DateVisit, SUM(totalcostofservice) AS TotalCostForVisit FROM customer
-	INNER JOIN serviceappointment ON customer.CUSTOMERID = serviceappointment.CUSTOMER_CUSTOMERID
-	INNER JOIN maintenancevisitorder ON appdate = maintenancevisitorder.SERVICEAPPOINTMENT_APPDATE
-    	AND maintenancevisitorder.`ServiceAppointment_Customer_customerID` = serviceappointment.`Customer_customerID`
-    	AND maintenancevisitorder.`ServiceAppointment_Vehicle_VIN` = serviceappointment.`Vehicle_VIN`
-	GROUP BY customer.customerid, SERVICEAPPOINTMENT_APPDATE;
-
-OR
-
 SELECT CUSTOMERID, ServiceAppointment_appDate AS DayOf, SUM(totalcostofservice) AS TotalCost
 FROM Customer
 INNER JOIN MaintenanceVisitOrder
@@ -30,17 +20,7 @@ GROUP BY CUSTOMERID,ServiceAppointment_appDate;
 
 
 
-/* 3 */
-SELECT customerID, (SELECT FirstName FROM Person WHERE Person.personID = Customer.Person_PersonID) AS FIRSTNAME,
-(SELECT LastName FROM Person WHERE Person.personID = Customer.Person_PersonID) AS LASTNAME,
-(SELECT SUM(totalcostofservice)FROM MaintenanceVisitOrder WHERE MaintenanceVisitOrder.ServiceAppointment_Customer_customerID = Customer.CUSTOMERID AND YEAR(serviceappointment_appdate) > (YEAR(CURRENT_DATE)-2)) 
-AS TOTAL
-FROM Customer
-WHERE (SELECT SUM(totalcostofservice)FROM MaintenanceVisitOrder WHERE MaintenanceVisitOrder.ServiceAppointment_Customer_customerID = Customer.CUSTOMERID AND YEAR(serviceappointment_appdate) > (YEAR(CURRENT_DATE)-2)) IS NOT NULL
-ORDER BY TOTAL DESC
-LIMIT 3;
-
-/*Another way of doing 3*/
+/*  3 */
 SELECT customer.customerid, person.`FirstName`, person.`LastName`, SUM(totalcostofservice) AS TotalCostForVisit FROM customer
 	INNER JOIN serviceappointment ON customer.CUSTOMERID = serviceappointment.CUSTOMER_CUSTOMERID
 	INNER JOIN PERSON ON customer.`Person_PersonID` = person.`PersonID`
@@ -135,6 +115,19 @@ SELECT c.`customerID`, SUM(m.`TotalCostOfService`) SpendingTotal
 	WHERE m.`ServiceAppointment_appDate` >= '2016-01-01' AND m.`ServiceAppointment_appDate` <= '2016-12-31'
 	GROUP BY c.`customerID`);
 
+/*10*/
+SELECT customerID, (SELECT FirstName FROM Person WHERE Person.personID = Customer.Person_PersonID) AS FIRSTNAME,
+(SELECT LastName FROM Person WHERE Person.personID = Customer.Person_PersonID) AS LASTNAME,
+(SELECT SUM(totalcostofservice)FROM MaintenanceVisitOrder WHERE MaintenanceVisitOrder.ServiceAppointment_Customer_customerID = Customer.CUSTOMERID AND YEAR(serviceappointment_appdate) > (YEAR(NOW())-1)) 
+AS TOTAL
+FROM Customer inner join Steady on Customer.customerID = Steady.Customer_customerID 
+WHERE (SELECT SUM(totalcostofservice)FROM MaintenanceVisitOrder WHERE MaintenanceVisitOrder.ServiceAppointment_Customer_customerID = Customer.CUSTOMERID AND YEAR(serviceappointment_appdate) > (YEAR(Now())-1)) IS NOT NULL
+ORDER BY TOTAL DESC;
+
+
+
+
+
 
 
 /*11*/
@@ -159,13 +152,15 @@ LIMIT 5;
 
 
 
+
 /* 13 */
-SELECT mn.`MentorID` AS MentorWithMostMentee, mn.`Skill_skillName` AS SkillsPassingAlong
-	FROM mechanic mc INNER JOIN mentoring mn ON mc.`Employee_EmployeeID` = mn.`MentorID`
+SELECT mn.`MentorID` AS MentorWithMostMentee, p.`Firstname`, p.`Lastname`, mn.`Skill_skillName` AS SkillsPassingAlong
+	FROM Person p INNER JOIN Employee e ON p.personid = e.person_personid
+	INNER JOIN Mechanic mc on e.employeeid = mc.employee_employeeid INNER JOIN Mentoring mn ON mc.`Employee_EmployeeID` = mn.`MentorID`
 	INNER JOIN
 	(SELECT MentorWithMenteeCount.MentorID, MAX(MentorWithMenteeCount.MenteeCount) FROM
-    	(SELECT mn2.`MentorID`, COUNT(mn2.`MenteeID`) AS MenteeCount FROM mechanic mc2
-        	INNER JOIN mentoring mn2 ON mc2.`Employee_EmployeeID` = mn2.`MentorID`
+    	(SELECT mn2.`MentorID`, COUNT(mn2.`MenteeID`) AS MenteeCount FROM Mechanic mc2
+        	INNER JOIN Mentoring mn2 ON mc2.`Employee_EmployeeID` = mn2.`MentorID`
         	GROUP BY mn2.`MentorID`) as MentorWithMenteeCount) AS MentorWithMaxMentee
 	ON mn.`MentorID` = MentorWithMaxMentee.MentorID;
 
@@ -178,12 +173,9 @@ LIMIT 3;
 
 
 /* 15 */
-SELECT e.EMPLOYEEID, 'Technician' AS Occupation FROM employee e INNER JOIN technician t ON e.EMPLOYEEID = t.employee_employeeid
-	WHERE e.EMPLOYEEID IN (SELECT e.EMPLOYEEID FROM employee e INNER JOIN technician t ON e.EMPLOYEEID = t.EMPLOYEE_EMPLOYEEID)
-UNION ALL
-SELECT e.EMPLOYEEID, 'Mechanic' AS Occupation FROM employee e INNER JOIN mechanic m ON e.EMPLOYEEID = m.employee_employeeid
-	WHERE e.EMPLOYEEID IN (SELECT e.EMPLOYEEID FROM employee e INNER JOIN mechanic m ON e.EMPLOYEEID = m.EMPLOYEE_EMPLOYEEID);
-
+SELECT e.EMPLOYEEID, p.`FirstName`, p.`LastName` FROM Person p INNER JOIN Employee e ON p.personid = e.person_personid
+ INNER JOIN Technician t ON e.EMPLOYEEID = t.employee_employeeid
+	WHERE e.EMPLOYEEID IN (SELECT e.EMPLOYEEID FROM Employee e INNER JOIN Mechanic m ON e.EMPLOYEEID = m.EMPLOYEE_EMPLOYEEID);
 
 
 /* 16 */
@@ -222,8 +214,8 @@ SELECT itemname FROM maintenanceitem WHERE package_packageid IS NULL;
 
 
     
-  	  -- Estimated Yearly Mileage must be greater than 100 miles
-	SELECT estimatedMileagePerYear FROM vehicle;
+- Estimated Yearly Mileage must be greater than 100 miles
+	SELECT VIN, estimatedMileagePerYear FROM Vehicle;
 
 
 
